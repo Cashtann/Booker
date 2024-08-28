@@ -1,0 +1,4 @@
+Booker/build*
+CMakeLists.txt.user
+.DS_Store
+TODO.txt

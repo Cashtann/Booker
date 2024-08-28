@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>assets/icons/icon_accept.svg</file>
+        <file>assets/icons/icon_add.svg</file>
+        <file>assets/icons/icon_bed.svg</file>
+        <file>assets/icons/icon_calendar_cancel.svg</file>
+        <file>assets/icons/icon_calendar_confirm.svg</file>
+        <file>assets/icons/icon_calendar_default.svg</file>
+        <file>assets/icons/icon_calendar_time.svg</file>
+        <file>assets/icons/icon_coming_soon.svg</file>
+        <file>assets/icons/icon_person.svg</file>
+        <file>assets/icons/icon_question_mark.svg</file>
+        <file>assets/icons/icon_remove.svg</file>
+        <file>assets/images/mainpage_welcome.png</file>
+        <file>assets/images/preview_copenhagen.jpg</file>
+        <file>assets/images/preview_cracow.jpg</file>
+        <file>assets/images/preview_london.jpg</file>
+        <file>assets/images/preview_moscow.jpg</file>
+        <file>assets/images/preview_nyc.jpg</file>
+        <file>assets/images/preview_seattle.jpg</file>
+        <file>assets/images/preview_shanghai.jpg</file>
+        <file>assets/images/preview_thailand.jpg</file>
+        <file>assets/images/preview_tokyo.jpg</file>
+    </qresource>
+</RCC>
