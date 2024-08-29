@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QAbstractListModel>
 
+class CategoryModel;
 
 class ElementModel;
 
@@ -35,15 +36,7 @@ signals:
 
 private:
 
-    struct Category : public QObject {
-        explicit Category(QObject *parent = nullptr);
-
-        QString name;
-        QString header;
-        QString description;
-        ElementModel* elements;
-    };
-    QList<Category*> m_categoryList;
+    QList<CategoryModel*> m_categoryList;
 
 };
 

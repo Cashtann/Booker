@@ -26,7 +26,7 @@ Item {
             required property string categoryName
             required property string categoryHeader
             required property string categoryDescription
-
+            required property var categoryElements
 
             height: 300
 
@@ -71,6 +71,30 @@ Item {
                     left: parent.left
                     right: parent.right
 
+                }
+            }
+
+            ListView {
+                id: elements
+
+                interactive: false
+                boundsBehavior: Flickable.StopAtBounds
+
+                anchors {
+                    fill: parent
+                }
+                //clip: true
+                model: categoryElements
+                spacing: 10
+
+                delegate: Item {
+                    id: element
+
+                    Rectangle {
+                        width: 10
+                        height: 10
+                        color: styles.yellowDefault
+                    }
                 }
             }
 

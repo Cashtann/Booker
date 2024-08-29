@@ -2,7 +2,7 @@
 #define CATEGORYMODEL_H
 
 #include <QObject>
-#include <QAbstractListModel>
+
 #include <QVariant>
 #include <qqml.h>
 
@@ -19,7 +19,8 @@ public:
     QString name;
     QString header;
     QString description;
-    QList<ElementModel*> elements;
+    ElementModel* elements;
+
 };
 
 #endif // CATEGORYMODEL_H

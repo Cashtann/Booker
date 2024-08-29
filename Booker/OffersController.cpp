@@ -1,4 +1,5 @@
 #include "OffersController.h"
+#include "CategoryModel.h"
 #include "ElementModel.h"
 #include <QVariant>
 
@@ -6,6 +7,8 @@ OffersController::OffersController(QObject *parent)
     : QAbstractListModel{parent}
 {
     ElementModel* element = new ElementModel(this);
+    //element->name = "test";
+
     addCategory("Name", "Header", "Description", element);
 }
 
@@ -19,7 +22,7 @@ QVariant OffersController::data(const QModelIndex &index, int role) const
 {
     if (index.isValid() && index.row() >= 0 && index.row() < m_categoryList.length())
     {
-        Category* category = m_categoryList[index.row()];
+        CategoryModel* category = m_categoryList[index.row()];
 
         switch((CategoryRoles) role){
         case CategoryNameRole:
@@ -53,7 +56,7 @@ void OffersController::addCategory(const QString &categoryName, const QString &c
 {
     beginInsertRows(QModelIndex(), m_categoryList.length(), m_categoryList.length());
 
-    Category* category = new Category(this);
+    CategoryModel* category = new CategoryModel(this);
 
     category->name = categoryName;
     category->header = categoryHeader;
@@ -65,9 +68,3 @@ void OffersController::addCategory(const QString &categoryName, const QString &c
     endInsertRows();
 }
 
-
-
-OffersController::Category::Category(QObject *parent)
-{
-
-}

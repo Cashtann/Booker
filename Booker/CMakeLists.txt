@@ -33,8 +33,11 @@ qt_add_qml_module(appBooker
         QML_FILES SubPage.qml
         RESOURCES res.qrc
         SOURCES
-        SOURCES ElementModel.h ElementModel.cpp
+        SOURCES
         SOURCES CategoryModel.h CategoryModel.cpp
+        SOURCES ElementInfo.h ElementInfo.cpp
+        SOURCES
+        SOURCES ElementModel.h ElementModel.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
