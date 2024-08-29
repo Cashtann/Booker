@@ -11,6 +11,7 @@ Item {
         id: itemsContainer
 
         interactive: false
+        boundsBehavior: Flickable.StopAtBounds
 
         anchors {
             fill: parent

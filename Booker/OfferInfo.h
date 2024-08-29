@@ -4,7 +4,6 @@
 #include <QObject>
 #include <qqml.h>
 #include <QUrl>
-#include <vector>
 
 
 class OfferInfo : public QObject
