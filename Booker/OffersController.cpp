@@ -1,33 +1,37 @@
 #include "OffersController.h"
-#include "OfferInfo.h"
+#include "ElementModel.h"
+#include <QVariant>
 
 OffersController::OffersController(QObject *parent)
     : QAbstractListModel{parent}
 {
-    addCategory("TestName", "Header? Nah", "Lorem ipsum i do przodu");
-    addCategory("dupa123", "another Header? Nah", "bajlando");
+    ElementModel* element = new ElementModel(this);
+    addCategory("Name", "Header", "Description", element);
 }
 
 int OffersController::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return m_categoryList.length();
-
 }
 
 QVariant OffersController::data(const QModelIndex &index, int role) const
 {
     if (index.isValid() && index.row() >= 0 && index.row() < m_categoryList.length())
     {
-        CategoryInfo* categoryInfo = m_categoryList[index.row()];
+        Category* category = m_categoryList[index.row()];
 
         switch((CategoryRoles) role){
         case CategoryNameRole:
-            return categoryInfo->categoryName();
+            return category->name;
         case CategoryHeaderRole:
-            return categoryInfo->categoryHeader();
+            return category->header;
         case CategoryDescriptionRole:
-            return categoryInfo->categoryDescription();
+            return category->description;
+        case CategoryElementsRole:
+            return QVariant::fromValue(category->elements);
+        default:
+            return {};
         }
     }
     return {};
@@ -40,32 +44,30 @@ QHash<int, QByteArray> OffersController::roleNames() const
     result[CategoryNameRole] = "categoryName";
     result[CategoryHeaderRole] = "categoryHeader";
     result[CategoryDescriptionRole] = "categoryDescription";
+    result[CategoryElementsRole] = "categoryElements";
 
     return result;
 }
 
-void OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription)
+void OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription, ElementModel *categoryElements)
 {
     beginInsertRows(QModelIndex(), m_categoryList.length(), m_categoryList.length());
-    CategoryInfo* categoryInfo = new CategoryInfo(this);
 
-    categoryInfo->setCategoryName(categoryName);
-    categoryInfo->setCategoryHeader(categoryHeader);
-    categoryInfo->setcategoryDescription(categoryDescription);
-    //categoryInfo->setElements({});
+    Category* category = new Category(this);
 
-    OfferInfo* test1 = new OfferInfo(this);
-    test1->setHeader("test");
-    test1->setIndex(2137);
-    test1->setImages({QUrl("qrc:/res/assets/images/preview_cracow.jpg")});
-    test1->setDescription("test lorem ipsum");
-    test1->setRatings({0, 1, 2, 3});
-    test1->setAvgRating(4.3);
+    category->name = categoryName;
+    category->header = categoryHeader;
+    category->description = categoryDescription;
+    category->elements = categoryElements;
 
-    categoryInfo->setElements({test1});
-
-
-    m_categoryList << categoryInfo;
+    m_categoryList << category;
 
     endInsertRows();
+}
+
+
+
+OffersController::Category::Category(QObject *parent)
+{
+
 }

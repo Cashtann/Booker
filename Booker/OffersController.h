@@ -1,9 +1,11 @@
 #ifndef OFFERSCONTROLLER_H
 #define OFFERSCONTROLLER_H
 
-#include "CategoryInfo.h"
 #include <QObject>
 #include <QAbstractListModel>
+
+
+class ElementModel;
 
 class OffersController : public QAbstractListModel
 {
@@ -12,7 +14,8 @@ public:
     enum CategoryRoles {
         CategoryNameRole = Qt::UserRole + 1,
         CategoryHeaderRole,
-        CategoryDescriptionRole
+        CategoryDescriptionRole,
+        CategoryElementsRole
     };
 
     explicit OffersController(QObject *parent = nullptr);
@@ -21,15 +24,27 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
 
+
 public slots:
+
     void addCategory(const QString& categoryName,
                      const QString& categoryHeader,
-                     const QString& categoryDescription);
-
+                     const QString& categoryDescription,
+                     ElementModel* categoryElements);
 signals:
 
 private:
-    QList<CategoryInfo*> m_categoryList;
+
+    struct Category : public QObject {
+        explicit Category(QObject *parent = nullptr);
+
+        QString name;
+        QString header;
+        QString description;
+        ElementModel* elements;
+    };
+    QList<Category*> m_categoryList;
+
 };
 
 #endif // OFFERSCONTROLLER_H
