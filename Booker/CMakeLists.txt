@@ -34,7 +34,7 @@ qt_add_qml_module(appBooker
         RESOURCES res.qrc
         SOURCES
         SOURCES
-        SOURCES CategoryModel.h CategoryModel.cpp
+        SOURCES CategoryInfo.h CategoryInfo.cpp
         SOURCES ElementInfo.h ElementInfo.cpp
         SOURCES
         SOURCES ElementModel.h ElementModel.cpp

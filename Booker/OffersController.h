@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QAbstractListModel>
 
-class CategoryModel;
+class CategoryInfo;
 
 class ElementModel;
 
@@ -36,7 +36,7 @@ signals:
 
 private:
 
-    QList<CategoryModel*> m_categoryList;
+    QList<CategoryInfo*> m_categoryList;
 
 };
 
