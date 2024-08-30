@@ -85,14 +85,14 @@ Item {
                 }
                 //clip: true
                 model: categoryElements
-                spacing: 10
+                spacing: 100
 
                 delegate: Item {
                     id: element
 
                     Rectangle {
-                        width: 10
-                        height: 10
+                        width: 100
+                        height: 100
                         color: styles.yellowDefault
                     }
                 }

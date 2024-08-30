@@ -12,121 +12,100 @@ Rectangle{
         fill: parent
     }
 
-    ScrollView {
-        anchors.fill: parent
-        contentWidth: parent.width
-        contentHeight: column.height
-        id: root
+    ScrollPageTemplate {
+
+        AppHeaderSection {
+            id: appHeaderSection
 
 
-        clip: true
-        ScrollBar.vertical: ScrollBar {
-            width: 0
-            stepSize: 0
         }
 
-        Flickable {
-            anchors.fill: parent
-            boundsBehavior: Flickable.StopAtBounds
+        Image {
+            id: welcomeImage
+
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+
+            width: parent.width
+            height: 400
+
+            source: styles.mainPageOpeningImage
+
+            fillMode: Image.PreserveAspectCrop
+
             Column {
-                id: column
-                width: parent.width
-                AppHeaderSection {
-                    id: appHeaderSection
-
-
+                id: headerTexts
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    horizontalCenter: parent.horizontalCenter
                 }
 
-                Image {
-                    id: welcomeImage
+                width: styles.pageWidthContent
 
+                HeaderText {
+                    id: mainHeaderText
+                    fontSize: styles.h3
+                    fontColor: styles.white
+                    fontBold: true
+                    textContent: "A place to call home\non your next adventure"
+                    // textContent: "Rest beyond expectations \non your next adventure"
+                    maxLinesCount: 2
                     anchors {
-                        horizontalCenter: parent.horizontalCenter
-                    }
-
-                    width: parent.width
-                    height: 400
-
-                    source: styles.mainPageOpeningImage
-
-                    fillMode: Image.PreserveAspectCrop
-
-                    Column {
-                        id: headerTexts
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            horizontalCenter: parent.horizontalCenter
-                        }
-
-                        width: styles.pageWidthContent
-
-                        HeaderText {
-                            id: mainHeaderText
-                            fontSize: styles.h3
-                            fontColor: styles.white
-                            fontBold: true
-                            textContent: "A place to call home\non your next adventure"
-                            // textContent: "Rest beyond expectations \non your next adventure"
-                            maxLinesCount: 2
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-                            }
-                        }
-                        HeaderText {
-                            fontSize: styles.h6
-                            fontColor: styles.white
-                            fontBold: false
-                            textContent: "Experience the joy of an entire place to yourself"
-                            maxLinesCount: 2
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-
-                            }
-                        }
-                    }
-                }
-
-
-
-                Rectangle {
-                    id: test
-
-                    anchors {
-                        //top: appHeaderSection.bottom
                         left: parent.left
                         right: parent.right
                     }
-
-                    height: 50
-
-                    color: styles.greyLight
                 }
-
-                Rectangle {
-                    id: test2
-
+                HeaderText {
+                    fontSize: styles.h6
+                    fontColor: styles.white
+                    fontBold: false
+                    textContent: "Experience the joy of an entire place to yourself"
+                    maxLinesCount: 2
                     anchors {
-                        horizontalCenter: parent.horizontalCenter
-                    }
+                        left: parent.left
+                        right: parent.right
 
-                    width: styles.pageWidthContent
-                    height: 1500
-                    color: styles.redMedium
-
-                    OffersList {
-                        id: offersList
-
-                        anchors {
-                            fill: parent
-                        }
                     }
                 }
             }
         }
 
 
+
+        Rectangle {
+            id: test
+
+            anchors {
+                //top: appHeaderSection.bottom
+                left: parent.left
+                right: parent.right
+            }
+
+            height: 50
+
+            color: styles.greyLight
+        }
+
+        Rectangle {
+            id: test2
+
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+
+            width: styles.pageWidthContent
+            height: 1500
+            color: styles.redMedium
+
+            OffersList {
+                id: offersList
+
+                anchors {
+                    fill: parent
+                }
+            }
+        }
     }
 
 

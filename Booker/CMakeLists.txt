@@ -38,6 +38,7 @@ qt_add_qml_module(appBooker
         SOURCES ElementInfo.h ElementInfo.cpp
         SOURCES
         SOURCES ElementModel.h ElementModel.cpp
+        QML_FILES ScrollPageTemplate.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

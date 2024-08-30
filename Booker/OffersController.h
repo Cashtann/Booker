@@ -28,10 +28,14 @@ public:
 
 public slots:
 
-    void addCategory(const QString& categoryName,
+    CategoryInfo* addCategory(const QString& categoryName,
                      const QString& categoryHeader,
                      const QString& categoryDescription,
                      ElementModel* categoryElements);
+
+    CategoryInfo* addCategory(const QString& categoryName,
+                     const QString& categoryHeader,
+                     const QString& categoryDescription);
 signals:
 
 private:

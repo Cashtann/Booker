@@ -11,6 +11,7 @@ OffersController::OffersController(QObject *parent)
     element->addElement("test", "test", "test", 12, 12);
 
     addCategory("Name", "Header", "Description", element);
+    addCategory("Name", "Header", "Description");
 }
 
 int OffersController::rowCount(const QModelIndex &parent) const
@@ -53,16 +54,11 @@ QHash<int, QByteArray> OffersController::roleNames() const
     return result;
 }
 
-void OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription, ElementModel *categoryElements)
+CategoryInfo* OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription, ElementModel *categoryElements)
 {
     beginInsertRows(QModelIndex(), m_categoryList.length(), m_categoryList.length());
 
     CategoryInfo* category = new CategoryInfo(this);
-
-    // category->name = categoryName;
-    // category->header = categoryHeader;
-    // category->description = categoryDescription;
-    // category->elements = categoryElements;
 
     category->setName(categoryName);
     category->setHeader(categoryHeader);
@@ -72,5 +68,22 @@ void OffersController::addCategory(const QString &categoryName, const QString &c
     m_categoryList << category;
 
     endInsertRows();
+    return category;
+}
+
+CategoryInfo* OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription)
+{
+    beginInsertRows(QModelIndex(), m_categoryList.length(), m_categoryList.length());
+
+    CategoryInfo* category = new CategoryInfo(this);
+
+    category->setName(categoryName);
+    category->setHeader(categoryHeader);
+    category->setDescription(categoryDescription);
+
+    m_categoryList << category;
+
+    endInsertRows();
+    return category;
 }
 

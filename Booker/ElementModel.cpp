@@ -4,7 +4,7 @@
 ElementModel::ElementModel(QObject *parent)
     : QAbstractListModel{parent}
 {
-    addElement("testName", "testHeader", "testLocation", 420.69, 6.9);
+    //addElement("testName", "testHeader", "testLocation", 420.69, 6.9);
 }
 
 int ElementModel::rowCount(const QModelIndex &parent) const
