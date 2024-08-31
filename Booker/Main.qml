@@ -8,7 +8,7 @@ Window {
     width: 1920
     height: 1080
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Booker")
     color: styles.white
 
     minimumWidth: styles.pageWidthContent + 50

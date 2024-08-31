@@ -3,6 +3,7 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import Booker
 import app.OffersController
+import app.Manager
 
 Item {
     id: root
@@ -119,9 +120,17 @@ Item {
                                 sourceItem: Rectangle {
                                     width: elementPreviewImage.width
                                     height: elementPreviewImage.height
-                                    radius: 20  // Set the desired corner radius
+                                    radius: 15
                                 }
                             }
+                        }
+                    }
+
+                    MouseArea {
+                        id: previewOfferMouseArea
+                        anchors.fill: elementPreviewImage
+                        onClicked: {
+                            Manager.debug();
                         }
                     }
 
@@ -153,6 +162,23 @@ Item {
                         }
                     }
                 }
+                // Rectangle {
+                //     anchors.fill: parent
+                //     color: if ((parent.count * styles.previewOfferWidth + (parent.count - 1) * styles.previewOfferSpacing) > parent.width) styles.greenLight
+                //             else "transparent"
+                // }
+            }
+            ColoredIcon {
+                imageColor: styles.black
+                imageSource: "qrc:/res/assets/icons/icon_circle_right.svg"
+                anchors {
+                    horizontalCenter: elements.right
+                    verticalCenter: elements.verticalCenter
+                }
+
+                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width)
+                             1
+                        else 0
             }
 
         }

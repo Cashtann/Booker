@@ -21,5 +21,9 @@
         <file>assets/images/preview_shanghai.jpg</file>
         <file>assets/images/preview_thailand.jpg</file>
         <file>assets/images/preview_tokyo.jpg</file>
+        <file>assets/icons/icon_circle_down.svg</file>
+        <file>assets/icons/icon_circle_left.svg</file>
+        <file>assets/icons/icon_circle_right.svg</file>
+        <file>assets/icons/icon_circle_up.svg</file>
     </qresource>
 </RCC>
