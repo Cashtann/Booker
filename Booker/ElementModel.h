@@ -4,18 +4,21 @@
 #include <QObject>
 #include <QAbstractListModel>
 
+
 class ElementInfo;
 
 class ElementModel : public QAbstractListModel
 {
     Q_OBJECT
+
 public:
     enum ElementRoles {
         ElementNameRole = Qt::UserRole + 1,
         ElementHeaderRole,
         ElementLocationRole,
         ElementPriceRole,
-        ElementAverageRatingRole
+        ElementAverageRatingRole,
+        ElementPreviewImageSourceRole
         // todo: img sources in another qabstractlistmodel so there can be multiple (weird, i know)
         // something similar with ratings
     };
@@ -31,6 +34,7 @@ public slots:
     void addElement(const QString& elementName,
                     const QString& elementHeader,
                     const QString& elementLocation,
+                    const QUrl& elementPreviewImageSource,
                     const qreal& elementPrice,
                     const qreal& elementAverageRating);
 

@@ -11,6 +11,7 @@ Item {
     property bool fontBold: false
     property int textHAlignment: Text.AlignLeft
     property int textVAlignment: Text.AlignVCenter
+    property bool isElideRight: false
 
     implicitHeight: fontSize * maxLinesCount * 1.2
 
@@ -25,7 +26,11 @@ Item {
 
         text: root.textContent
 
-        //elide: Text.ElideRight
+        elide: if (root.isElideRight)
+                    elide: Text.ElideRight
+                else
+                    elide: Text.ElideNone
+
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         maximumLineCount: root.maxLinesCount
 

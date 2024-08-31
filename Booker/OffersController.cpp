@@ -2,15 +2,22 @@
 #include "CategoryInfo.h"
 #include "ElementModel.h"
 #include <QVariant>
+#include <QUrl>
 
 OffersController::OffersController(QObject *parent)
     : QAbstractListModel{parent}
 {
     ElementModel* element = new ElementModel(this);
     //element->name = "test";
-    element->addElement("test", "test", "test", 12, 12);
+    element->addElement("Cracow", "Meet pigeons", "test1", QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
+    element->addElement("Moscow", "Face the russian fear", "test2", QUrl("qrc:/res/assets/images/preview_moscow.jpg"), 34, 34);
+    element->addElement("London", "Better learn to run", "test3", QUrl("qrc:/res/assets/images/preview_london.jpg"), 56, 56);
+    element->addElement("Copenhagen", "Not enough bikes?", "test3", QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
 
-    addCategory("Name", "Header", "Description", element);
+    addCategory("Europe",
+                "Explore Europe",
+                "Dive into beautiful and meaningful history of the old continent",
+                element);
     addCategory("Name", "Header", "Description");
 }
 

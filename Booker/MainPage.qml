@@ -70,21 +70,12 @@ Rectangle{
                 }
             }
         }
-
-
-
-        Rectangle {
-            id: test
-
+        Item {
+            height: 50
             anchors {
-                //top: appHeaderSection.bottom
                 left: parent.left
                 right: parent.right
             }
-
-            height: 50
-
-            color: styles.greyLight
         }
 
         Rectangle {
@@ -96,7 +87,7 @@ Rectangle{
 
             width: styles.pageWidthContent
             height: 1500
-            color: styles.redMedium
+            color: styles.white
 
             OffersList {
                 id: offersList

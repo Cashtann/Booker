@@ -12,8 +12,10 @@ class ElementInfo : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL)
     Q_PROPERTY(QString header READ header WRITE setHeader NOTIFY headerChanged FINAL)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged FINAL)
+    Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged FINAL)
     Q_PROPERTY(qreal price READ price WRITE setPrice NOTIFY priceChanged FINAL)
     Q_PROPERTY(qreal averageRating READ averageRating WRITE setAverageRating NOTIFY averageRatingChanged FINAL)
+    Q_PROPERTY(QUrl previewImageSource READ previewImageSource WRITE setPreviewImageSource NOTIFY previewImageSourceChanged FINAL)
     Q_PROPERTY(QList<int> ratings READ ratings WRITE setRatings NOTIFY ratingsChanged FINAL)
     Q_PROPERTY(QList<QUrl> imageSources READ imageSources WRITE setImageSources NOTIFY imageSourcesChanged FINAL)
 
@@ -43,6 +45,12 @@ public:
     QList<int> ratings() const;
     void setRatings(const QList<int> &newRatings);
 
+    QUrl previewImageSource() const;
+    void setPreviewImageSource(const QUrl &newPreviewImageSource);
+
+    QString description() const;
+    void setDescription(const QString &newDescription);
+
 signals:
     void nameChanged();
     void headerChanged();
@@ -57,6 +65,10 @@ signals:
 
     void ratingsChanged();
 
+    void previewImageSourceChanged();
+
+    void descriptionChanged();
+
 private:
     QString m_name;
     QString m_header;
@@ -65,6 +77,8 @@ private:
     qreal m_averageRating;
     QList<QUrl> m_imageSources;
     QList<int> m_ratings;
+    QUrl m_previewImageSource;
+    QString m_description;
 };
 
 #endif // ELEMENTINFO_H

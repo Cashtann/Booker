@@ -112,3 +112,29 @@ void ElementInfo::setRatings(const QList<int> &newRatings)
     updateAverageRating(); // to update averageRating
     emit ratingsChanged();
 }
+
+QUrl ElementInfo::previewImageSource() const
+{
+    return m_previewImageSource;
+}
+
+void ElementInfo::setPreviewImageSource(const QUrl &newPreviewImageSource)
+{
+    if (m_previewImageSource == newPreviewImageSource)
+        return;
+    m_previewImageSource = newPreviewImageSource;
+    emit previewImageSourceChanged();
+}
+
+QString ElementInfo::description() const
+{
+    return m_description;
+}
+
+void ElementInfo::setDescription(const QString &newDescription)
+{
+    if (m_description == newDescription)
+        return;
+    m_description = newDescription;
+    emit descriptionChanged();
+}

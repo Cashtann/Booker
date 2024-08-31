@@ -53,6 +53,11 @@ QtObject {
 
     readonly property url mainPageOpeningImage: "qrc:/res/assets/images/mainpage_welcome.png"
 
+    readonly property int previewOfferSpacing: 25
+    readonly property int previewOfferWidth: (pageWidthContent - 3 * previewOfferSpacing) / 4
+    //readonly property int previewOfferWidth: 300
+    readonly property int previewOfferHeight: 400
+    readonly property int previewOfferImageMargins: 25
 
     property bool isLightTheme: true
 
