@@ -10,6 +10,58 @@ Item {
 
     signal clicked
 
+    height: itemsContainer.height + welcomeImage.height + 200
+
+    Image {
+        id: welcomeImage
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        width: parent.width
+        height: 400
+
+        source: styles.mainPageOpeningImage
+
+        fillMode: Image.PreserveAspectCrop
+
+        Column {
+            id: headerTexts
+            anchors {
+                verticalCenter: parent.verticalCenter
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: styles.pageWidthContent
+
+            HeaderText {
+                id: mainHeaderText
+                fontSize: styles.h3
+                fontColor: styles.white
+                fontBold: true
+                textContent: "A place to call home\non your next adventure"
+                // textContent: "Rest beyond expectations \non your next adventure"
+                maxLinesCount: 2
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+            HeaderText {
+                fontSize: styles.h6
+                fontColor: styles.white
+                fontBold: false
+                textContent: "Experience the joy of an entire place to yourself"
+                maxLinesCount: 2
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+        }
+    }
+
+
     ListView {
         id: itemsContainer
 
@@ -17,8 +69,12 @@ Item {
         boundsBehavior: Flickable.StopAtBounds
 
         anchors {
-            fill: parent
+            top: welcomeImage.bottom
+            topMargin: 50
+            horizontalCenter: parent.horizontalCenter
         }
+        width: styles.pageWidthContent
+        height: contentHeight
         //clip: true
         model: OffersController
         spacing: 100
