@@ -28,7 +28,7 @@ qt_add_qml_module(appBooker
         SOURCES
         QML_FILES OfferPage.qml
         SOURCES OffersController.h OffersController.cpp
-        QML_FILES OffersList.qml
+        QML_FILES
         RESOURCES
         QML_FILES SubPage.qml
         RESOURCES res.qrc

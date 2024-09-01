@@ -14,13 +14,29 @@ Window {
     minimumWidth: styles.pageWidthContent + 50
     minimumHeight: minimumWidth / 2
 
+    Rectangle{
+        id: background
 
-   MainPage { id: mainPage }
-   //OfferPage { id: testPage }
+        color: styles.mainBackground
 
+        anchors {
+            fill: parent
+        }
 
+        ScrollPageTemplate {
 
-    AppStyle {
-        id: styles
+            AppHeaderSection {
+                id: appHeaderSection
+            }
+
+            MainPage {
+                id: mainPage
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
     }
+
+    AppStyle { id: styles }
 }
