@@ -25,5 +25,9 @@
         <file>assets/icons/icon_circle_left.svg</file>
         <file>assets/icons/icon_circle_right.svg</file>
         <file>assets/icons/icon_circle_up.svg</file>
+        <file>assets/icons/icon_angle_down.svg</file>
+        <file>assets/icons/icon_angle_left.svg</file>
+        <file>assets/icons/icon_angle_right.svg</file>
+        <file>assets/icons/icon_angle_up.svg</file>
     </qresource>
 </RCC>

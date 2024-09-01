@@ -9,11 +9,11 @@ Item {
     required property url imageSource
 
     implicitWidth: 50
-    implicitHeight: 50
+    implicitHeight: img.implicitHeight
 
     Image {
         id: img
-
+        width: parent.width
         source: root.imageSource
 
         fillMode: Image.PreserveAspectFit

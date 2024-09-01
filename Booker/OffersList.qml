@@ -77,6 +77,8 @@ Item {
                 boundsBehavior: Flickable.StopAtBounds
                 orientation: ListView.Horizontal
 
+                property int visibleElementCount: (elements.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed()
+
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -86,6 +88,7 @@ Item {
                 clip: true
                 model: delegate.categoryElements
                 spacing: styles.previewOfferSpacing
+                interactive: false
 
                 delegate: Item {
                     id: element
@@ -112,7 +115,7 @@ Item {
                             top: parent.top
                             bottom: previewOfferText1.top
                             topMargin: styles.previewOfferImageMargins
-                            bottomMargin: styles.previewOfferImageMargins
+                            bottomMargin: styles.previewOfferImageMargins / 2
                         }
                         layer.enabled: true
                         layer.effect: OpacityMask {
@@ -130,7 +133,7 @@ Item {
                         id: previewOfferMouseArea
                         anchors.fill: elementPreviewImage
                         onClicked: {
-                            Manager.debug();
+                            console.log(elements.currentIndex);
                         }
                     }
 
@@ -162,23 +165,64 @@ Item {
                         }
                     }
                 }
-                // Rectangle {
-                //     anchors.fill: parent
-                //     color: if ((parent.count * styles.previewOfferWidth + (parent.count - 1) * styles.previewOfferSpacing) > parent.width) styles.greenLight
-                //             else "transparent"
-                // }
+                currentIndex:   if (count == 0)
+                                  0
+                                else if (count < elements.visibleElementCount)
+                                // (count <= ((elements.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed() - 1))
+                                    count - 1
+                                else elements.visibleElementCount - 1
+
             }
-            ColoredIcon {
+
+            IconRound {
                 imageColor: styles.black
-                imageSource: "qrc:/res/assets/icons/icon_circle_right.svg"
+                imageSource: "qrc:/res/assets/icons/icon_angle_right.svg"
+                backgroundColor: styles.greyLight
+                imageWidth: 10
+                width: 50
+                height: 50
                 anchors {
                     horizontalCenter: elements.right
                     verticalCenter: elements.verticalCenter
                 }
-
                 opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width)
                              1
-                        else 0
+                        else .2
+                onClicked: {
+                    if (elements.currentIndex <= elements.visibleElementCount - 1) {
+                        elements.currentIndex = elements.visibleElementCount
+                    }
+                    else {
+                        elements.incrementCurrentIndex()
+                    }
+
+                    if (opacity === 1) elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
+                }
+            }
+            IconRound {
+                imageColor: styles.black
+                imageSource: "qrc:/res/assets/icons/icon_angle_left.svg"
+                backgroundColor: styles.greyLight
+                imageWidth: 10
+                width: 50
+                height: 50
+                anchors {
+                    horizontalCenter: elements.left
+                    verticalCenter: elements.verticalCenter
+                }
+                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width)
+                             1
+                        else .2
+                onClicked: {
+                    if (elements.currentIndex > elements.count - elements.visibleElementCount) {
+                        elements.currentIndex = elements.count - elements.visibleElementCount - 1
+                    }
+                    else {
+                        elements.decrementCurrentIndex()
+                    }
+
+                    if (opacity === 1) elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
+                }
             }
 
         }
