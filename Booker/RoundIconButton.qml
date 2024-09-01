@@ -11,6 +11,7 @@ Item {
     required property int imageWidth
     property color shadowColor: styles.grey
     property int shadowSize: 12
+    property int buttonCooldown: 1
 
     signal clicked()
 
@@ -38,6 +39,18 @@ Item {
         hoverEnabled: true
         onClicked: {
             root.clicked()
+            mouseArea.enabled = false
+            cooldownTimer.start()
+        }
+    }
+
+    Timer {
+        id: cooldownTimer
+        interval: root.buttonCooldown
+        running: false
+        repeat: false
+        onTriggered: {
+            mouseArea.enabled = true
         }
     }
 

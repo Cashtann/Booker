@@ -71,6 +71,23 @@ Item {
                 }
             }
 
+            function gotoIndex(idx) {
+                anim.running = false;
+
+                var pos = elements.contentX;
+                var destPos;
+
+                elements.positionViewAtIndex(idx, ListView.Contain);
+                destPos = elements.contentX;
+
+                anim.from = pos;
+                anim.to = destPos;
+                anim.running = true;
+            }
+
+            NumberAnimation { id: anim; target: elements; property: "contentX"; duration: 300; easing.type: Easing.InOutQuad }
+
+
             ListView {
                 id: elements
 
@@ -133,7 +150,7 @@ Item {
                         id: previewOfferMouseArea
                         anchors.fill: elementPreviewImage
                         onClicked: {
-                            console.log(elements.currentIndex);
+                            //console.log(elements.currentIndex);
                         }
                     }
 
@@ -165,63 +182,84 @@ Item {
                         }
                     }
                 }
-                currentIndex:   if (count == 0)
-                                  0
-                                else if (count < elements.visibleElementCount)
-                                // (count <= ((elements.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed() - 1))
-                                    count - 1
-                                else elements.visibleElementCount - 1
+                // currentIndex:   if (count === 0)
+                //                   0
+                //                 else if (count < elements.visibleElementCount)
+                //                 // (count <= ((elements.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed() - 1))
+                //                     count - 1
+                //                 else elements.visibleElementCount - 1
+                highlightFollowsCurrentItem: true
+                        highlightMoveDuration: 500  // Duration for the scroll animation in milliseconds
+                        highlight: Rectangle {       // Custom highlight item (can be empty or styled)
+                            color: "transparent"     // Use transparent color if you don't want a visible highlight
+                            width: 1
+                            height: 1
+                        }
 
             }
 
-            IconRound {
+            RoundIconButton {
                 imageColor: styles.black
                 imageSource: "qrc:/res/assets/icons/icon_angle_right.svg"
                 backgroundColor: styles.greyLight
                 imageWidth: 10
-                width: 50
+                width: if (opacity === 0) { 0 } else 50
                 height: 50
+                buttonCooldown: 200
                 anchors {
                     horizontalCenter: elements.right
                     verticalCenter: elements.verticalCenter
                 }
-                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width)
-                             1
-                        else .2
+                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
+                            if (elements.currentIndex === elements.count - 1)
+                                .5
+                            else 1
+                         }
+                        else 0
                 onClicked: {
-                    if (elements.currentIndex <= elements.visibleElementCount - 1) {
-                        elements.currentIndex = elements.visibleElementCount
-                    }
-                    else {
-                        elements.incrementCurrentIndex()
-                    }
+                    if (opacity === 1) {
+                        if (elements.currentIndex <= elements.visibleElementCount - 1) {
+                            elements.currentIndex = elements.visibleElementCount
+                        }
+                        else {
+                            elements.incrementCurrentIndex()
+                        }
 
-                    if (opacity === 1) elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
+                        //elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
+                        gotoIndex(elements.currentIndex)
+                    }
                 }
             }
-            IconRound {
+            RoundIconButton {
                 imageColor: styles.black
                 imageSource: "qrc:/res/assets/icons/icon_angle_left.svg"
                 backgroundColor: styles.greyLight
                 imageWidth: 10
-                width: 50
+                width: if (opacity === 0) { 0 } else 50
                 height: 50
+                buttonCooldown: 200
                 anchors {
                     horizontalCenter: elements.left
                     verticalCenter: elements.verticalCenter
                 }
-                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width)
-                             1
-                        else .2
+                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
+                            if (elements.currentIndex === 0)
+                                .5
+                            else 1
+                         }
+                        else 0
                 onClicked: {
-                    if (elements.currentIndex > elements.count - elements.visibleElementCount) {
-                        elements.currentIndex = elements.count - elements.visibleElementCount - 1
-                    }
-                    else {
-                        elements.decrementCurrentIndex()
-                    }
+                    if (opacity === 1) {
+                        if (elements.currentIndex > elements.count - elements.visibleElementCount) {
+                            elements.currentIndex = elements.count - elements.visibleElementCount - 1
+                        }
+                        else {
+                            elements.decrementCurrentIndex()
+                        }
 
-                    if (opacity === 1) elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
+                        //elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
+                        gotoIndex(elements.currentIndex)
+                    }
                 }
             }
 

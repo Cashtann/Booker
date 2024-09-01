@@ -71,23 +71,23 @@ Item {
                         fill: parent
                     }
 
-                    IconRoundButton {
+                    IconButton {
                         buttonTextContent: "Home"
                         imageSource: "qrc:/res/assets/icons/icon_bed.svg"
                         isActive: true
                     }
 
-                    IconRoundButton {
+                    IconButton {
                         buttonTextContent: "About"
                         imageSource: "qrc:/res/assets/icons/icon_person.svg"
                     }
 
-                    IconRoundButton {
+                    IconButton {
                         buttonTextContent: "Contact"
                         imageSource: "qrc:/res/assets/icons/icon_calendar_default.svg"
                     }
 
-                    IconRoundButton {
+                    IconButton {
                         buttonTextContent: "Help"
                         imageSource: "qrc:/res/assets/icons/icon_question_mark.svg"
                     }
