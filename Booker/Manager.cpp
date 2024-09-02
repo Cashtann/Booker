@@ -9,3 +9,16 @@ void Manager::debug()
 {
     qDebug() << "[DEBUG] Something happend";
 }
+
+QString Manager::currentPage() const
+{
+    return m_currentPage;
+}
+
+void Manager::setCurrentPage(const QString &newCurrentPage)
+{
+    if (m_currentPage == newCurrentPage)
+        return;
+    m_currentPage = newCurrentPage;
+    emit currentPageChanged();
+}

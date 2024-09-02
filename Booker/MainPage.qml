@@ -5,12 +5,18 @@ import Booker
 import app.OffersController
 import app.Manager
 
-Item {
+Page {
     id: root
 
-    signal clicked
+    required property StackView stackViewRef
 
     height: itemsContainer.height + welcomeImage.height + 200
+    Rectangle {
+        id: background
+        width: root.width
+        height: root.height
+        color: styles.mainBackground
+    }
 
     Image {
         id: welcomeImage
@@ -60,7 +66,6 @@ Item {
             }
         }
     }
-
 
     ListView {
         id: itemsContainer
@@ -207,6 +212,8 @@ Item {
                         anchors.fill: elementPreviewImage
                         onClicked: {
                             console.log(elements.currentIndex);
+                            stackViewRef.push("OfferPage.qml", { modelData: elements.model }, StackView.Immediate)
+                            Manager.currentPage = "Other"
                         }
                     }
 
@@ -267,7 +274,7 @@ Item {
                     verticalCenter: elements.verticalCenter
                 }
                 opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
-                            if (elements.currentIndex === elements.count - 1)
+                            if (elements.currentIndex >= elements.count - elements.visibleElementCount)
                                 .3
                             else 1
                          }

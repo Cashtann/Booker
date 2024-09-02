@@ -1,8 +1,12 @@
 import QtQuick
 import Booker
+import QtQuick.Controls
+import app.Manager
 
 Item {
     id: root
+
+    required property StackView stackViewRef
 
     anchors {
         // top: parent.top
@@ -74,7 +78,13 @@ Item {
                     IconButton {
                         buttonTextContent: "Home"
                         imageSource: "qrc:/res/assets/icons/icon_bed.svg"
-                        isActive: true
+                        isActive: Manager.currentPage === "Home" ? true : false
+                        onClicked: {
+                            if (stackViewRef.currentItem !== stackViewRef.initialItem) {
+                                stackViewRef.pop(StackView.Immediate)
+                                Manager.currentPage = "Home"
+                            }
+                        }
                     }
 
                     IconButton {

@@ -27,13 +27,33 @@ Window {
 
             AppHeaderSection {
                 id: appHeaderSection
+                stackViewRef: stackView
+            }
+            StackView {
+                id: stackView
+
+                signal onInitialItemChanged()
+
+                initialItem: mainPage
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: mainPage.height
+
+                MainPage {
+                    id: mainPage
+                    width: parent.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    stackViewRef: stackView
+                }
             }
 
-            MainPage {
-                id: mainPage
-                width: parent.width
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+            // MainPage {
+            //     id: mainPage
+            //     width: parent.width
+            //     anchors.horizontalCenter: parent.horizontalCenter
+            // }
         }
 
     }
