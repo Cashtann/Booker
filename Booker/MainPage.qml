@@ -133,7 +133,7 @@ Item {
                 var pos = elements.contentX;
                 var destPos;
 
-                elements.positionViewAtIndex(idx, ListView.Contain);
+                elements.positionViewAtIndex(idx, ListView.Beginning);
                 destPos = elements.contentX;
 
                 anim.from = pos;
@@ -206,7 +206,7 @@ Item {
                         id: previewOfferMouseArea
                         anchors.fill: elementPreviewImage
                         onClicked: {
-                            //console.log(elements.currentIndex);
+                            console.log(elements.currentIndex);
                         }
                     }
 
@@ -257,7 +257,7 @@ Item {
             RoundIconButton {
                 imageColor: styles.black
                 imageSource: "qrc:/res/assets/icons/icon_angle_right.svg"
-                backgroundColor: styles.greyLight
+                backgroundColor: styles.white
                 imageWidth: 10
                 width: if (opacity === 0) { 0 } else 50
                 height: 50
@@ -268,14 +268,14 @@ Item {
                 }
                 opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
                             if (elements.currentIndex === elements.count - 1)
-                                .5
+                                .3
                             else 1
                          }
                         else 0
                 onClicked: {
                     if (opacity === 1) {
-                        if (elements.currentIndex <= elements.visibleElementCount - 1) {
-                            elements.currentIndex = elements.visibleElementCount
+                        if (elements.currentIndex >= elements.count - elements.visibleElementCount) {
+                            elements.currentIndex = elements.count - elements.visibleElementCount
                         }
                         else {
                             elements.incrementCurrentIndex()
@@ -289,7 +289,7 @@ Item {
             RoundIconButton {
                 imageColor: styles.black
                 imageSource: "qrc:/res/assets/icons/icon_angle_left.svg"
-                backgroundColor: styles.greyLight
+                backgroundColor: styles.white
                 imageWidth: 10
                 width: if (opacity === 0) { 0 } else 50
                 height: 50
@@ -300,18 +300,13 @@ Item {
                 }
                 opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
                             if (elements.currentIndex === 0)
-                                .5
+                                .3
                             else 1
                          }
                         else 0
                 onClicked: {
                     if (opacity === 1) {
-                        if (elements.currentIndex > elements.count - elements.visibleElementCount) {
-                            elements.currentIndex = elements.count - elements.visibleElementCount - 1
-                        }
-                        else {
-                            elements.decrementCurrentIndex()
-                        }
+                        elements.decrementCurrentIndex()
 
                         //elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
                         gotoIndex(elements.currentIndex)
