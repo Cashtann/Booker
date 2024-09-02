@@ -42,6 +42,7 @@ qt_add_qml_module(appBooker
         SOURCES Manager.h Manager.cpp
         QML_FILES ColoredIcon.qml
         QML_FILES RoundIconButton.qml
+        SOURCES Utilities.h Utilities.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

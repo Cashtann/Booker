@@ -17,6 +17,25 @@ Page {
     }
     Item {
         id: itemsContainer
+        anchors {
+            top: parent.top
+            topMargin: 50
+            horizontalCenter: parent.horizontalCenter
+        }
+        width: styles.pageWidthContent
+
+        Text {
+            id: description
+            width: parent.width / 2
+            height: parent.height
+
+            font.pixelSize: styles.h7
+            color: styles.black
+
+            text: modelData.elementDescription
+
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        }
     }
 
 

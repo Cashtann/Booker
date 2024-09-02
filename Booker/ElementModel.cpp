@@ -26,6 +26,8 @@ QVariant ElementModel::data(const QModelIndex &index, int role) const
             return element->header();
         case ElementLocationRole:
             return element->location();
+        case ElementDescriptionRole:
+            return element->description();
         case ElementPreviewImageSourceRole:
             return element->previewImageSource();
         case ElementPriceRole:
@@ -46,6 +48,7 @@ QHash<int, QByteArray> ElementModel::roleNames() const
     result[ElementNameRole] = "elementName";
     result[ElementHeaderRole] = "elementHeader";
     result[ElementLocationRole] = "elementLocation";
+    result[ElementDescriptionRole] = "elementDescription";
     result[ElementPriceRole] = "elementPrice";
     result[ElementAverageRatingRole] = "elementAverageRating";
     result[ElementPreviewImageSourceRole] = "elementPreviewImageSource";
@@ -53,7 +56,7 @@ QHash<int, QByteArray> ElementModel::roleNames() const
     return result;
 }
 
-void ElementModel::addElement(const QString &elementName, const QString &elementHeader, const QString &elementLocation, const QUrl& elementPreviewImageSource, const qreal &elementPrice, const qreal &elementAverageRating)
+void ElementModel::addElement(const QString &elementName, const QString &elementHeader, const QString &elementLocation, const QString& elementDescription, const QUrl& elementPreviewImageSource, const qreal &elementPrice, const qreal &elementAverageRating)
 {
     beginInsertRows(QModelIndex(), m_elementList.length(), m_elementList.length());
 
@@ -62,6 +65,7 @@ void ElementModel::addElement(const QString &elementName, const QString &element
     element->setName(elementName);
     element->setHeader(elementHeader);
     element->setLocation(elementLocation);
+    element->setDescription(elementDescription);
     element->setPreviewImageSource(elementPreviewImageSource);
     element->setPrice(elementPrice);
     element->setAverageRating(elementAverageRating);

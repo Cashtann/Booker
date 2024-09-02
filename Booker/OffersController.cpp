@@ -3,25 +3,26 @@
 #include "ElementModel.h"
 #include <QVariant>
 #include <QUrl>
+#include "Utilities.h"
 
 OffersController::OffersController(QObject *parent)
     : QAbstractListModel{parent}
 {
     ElementModel* element1 = new ElementModel(this);
     //element->name = "test";
-    element1->addElement("Cracow", "Meet pigeons", "Polan", QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
-    element1->addElement("Moscow", "Taste the strongest beverages", "Russia", QUrl("qrc:/res/assets/images/preview_moscow.jpg"), 34, 34);
-    element1->addElement("London", "Better learn to run", "Great Britain", QUrl("qrc:/res/assets/images/preview_london.jpg"), 56, 56);
-    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
-    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
+    element1->addElement("Cracow", "Meet pigeons", "Poland", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
+    element1->addElement("Moscow", "Taste the strongest beverages", "Russia", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_moscow.jpg"), 34, 34);
+    element1->addElement("London", "Better learn to run", "Great Britain", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_london.jpg"), 56, 56);
+    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
+    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
 
     addCategory("Europe",
                 "Explore Europe",
                 "Dive into beautiful and meaningful history of the old continent",
                 element1);
     ElementModel* element2 = new ElementModel(this);
-    element2->addElement("Cracow", "Meet pigeons", "Polan", QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
-    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
+    element2->addElement("Cracow", "Meet pigeons", "Poland", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
+    element2->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
     addCategory("Name", "Header", "Description", element2);
 }
 

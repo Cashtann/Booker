@@ -174,6 +174,7 @@ Page {
                     required property string elementName
                     required property string elementHeader
                     required property string elementLocation
+                    required property string elementDescription
                     required property url elementPreviewImageSource
                     required property real elementPrice
                     required property real elementAverageRating
@@ -211,8 +212,8 @@ Page {
                         id: previewOfferMouseArea
                         anchors.fill: elementPreviewImage
                         onClicked: {
-                            console.log(elements.currentIndex);
-                            stackViewRef.push("OfferPage.qml", { modelData: elements.model }, StackView.Immediate)
+                            //console.log(elements.currentIndex);
+                            stackViewRef.push("OfferPage.qml", { modelData: element }, StackView.Immediate)
                             Manager.currentPage = "Other"
                         }
                     }

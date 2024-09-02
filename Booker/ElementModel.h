@@ -16,6 +16,7 @@ public:
         ElementNameRole = Qt::UserRole + 1,
         ElementHeaderRole,
         ElementLocationRole,
+        ElementDescriptionRole,
         ElementPriceRole,
         ElementAverageRatingRole,
         ElementPreviewImageSourceRole
@@ -34,6 +35,7 @@ public slots:
     void addElement(const QString& elementName,
                     const QString& elementHeader,
                     const QString& elementLocation,
+                    const QString& elementDescription,
                     const QUrl& elementPreviewImageSource,
                     const qreal& elementPrice,
                     const qreal& elementAverageRating);
