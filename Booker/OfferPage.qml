@@ -32,7 +32,7 @@ Page {
             font.pixelSize: styles.h7
             color: styles.black
 
-            text: modelData.elementDescription
+            text: modelData.locationDescription
 
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }

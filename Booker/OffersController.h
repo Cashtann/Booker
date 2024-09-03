@@ -6,7 +6,7 @@
 
 class CategoryInfo;
 
-class ElementModel;
+class LocationModel;
 
 class OffersController : public QAbstractListModel
 {
@@ -16,7 +16,7 @@ public:
         CategoryNameRole = Qt::UserRole + 1,
         CategoryHeaderRole,
         CategoryDescriptionRole,
-        CategoryElementsRole
+        CategoryLocationsRole
     };
 
     explicit OffersController(QObject *parent = nullptr);
@@ -31,11 +31,11 @@ public slots:
     CategoryInfo* addCategory(const QString& categoryName,
                      const QString& categoryHeader,
                      const QString& categoryDescription,
-                     ElementModel* categoryElements);
+                     LocationModel* categoryLocations);
 
     CategoryInfo* addCategory(const QString& categoryName,
                      const QString& categoryHeader,
-                     const QString& categoryDescription);
+                     const QString& categoryLocations);
 signals:
 
 private:

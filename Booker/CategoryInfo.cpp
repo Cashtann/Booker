@@ -44,15 +44,16 @@ void CategoryInfo::setDescription(const QString &newDescription)
     emit descriptionChanged();
 }
 
-ElementModel *CategoryInfo::elements() const
+
+LocationModel *CategoryInfo::locations() const
 {
-    return m_elements;
+    return m_locations;
 }
 
-void CategoryInfo::setElements(ElementModel *newElements)
+void CategoryInfo::setLocations(LocationModel *newLocations)
 {
-    if (m_elements == newElements)
+    if (m_locations == newLocations)
         return;
-    m_elements = newElements;
-    emit elementsChanged();
+    m_locations = newLocations;
+    emit locationsChanged();
 }

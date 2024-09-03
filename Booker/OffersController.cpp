@@ -1,5 +1,6 @@
 #include "OffersController.h"
 #include "CategoryInfo.h"
+#include "LocationModel.h"
 #include "ElementModel.h"
 #include <QVariant>
 #include <QUrl>
@@ -14,16 +15,18 @@ OffersController::OffersController(QObject *parent)
     element1->addElement("Moscow", "Taste the strongest beverages", "Russia", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_moscow.jpg"), 34, 34);
     element1->addElement("London", "Better learn to run", "Great Britain", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_london.jpg"), 56, 56);
     element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
-    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
+
+    LocationModel* location1 = new LocationModel(this);
+    location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
 
     addCategory("Europe",
                 "Explore Europe",
                 "Dive into beautiful and meaningful history of the old continent",
-                element1);
+                location1);
     ElementModel* element2 = new ElementModel(this);
     element2->addElement("Cracow", "Meet pigeons", "Poland", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
     element2->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
-    addCategory("Name", "Header", "Description", element2);
+    addCategory("Name", "Header", "Description", location1);
 }
 
 int OffersController::rowCount(const QModelIndex &parent) const
@@ -45,8 +48,8 @@ QVariant OffersController::data(const QModelIndex &index, int role) const
             return category->header();
         case CategoryDescriptionRole:
             return category->description();
-        case CategoryElementsRole:
-            return QVariant::fromValue(category->elements());
+        case CategoryLocationsRole:
+            return QVariant::fromValue(category->locations());
         default:
             return {};
         }
@@ -61,12 +64,12 @@ QHash<int, QByteArray> OffersController::roleNames() const
     result[CategoryNameRole] = "categoryName";
     result[CategoryHeaderRole] = "categoryHeader";
     result[CategoryDescriptionRole] = "categoryDescription";
-    result[CategoryElementsRole] = "categoryElements";
+    result[CategoryLocationsRole] = "categoryLocations";
 
     return result;
 }
 
-CategoryInfo* OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription, ElementModel *categoryElements)
+CategoryInfo* OffersController::addCategory(const QString &categoryName, const QString &categoryHeader, const QString &categoryDescription, LocationModel *categoryLocations)
 {
     beginInsertRows(QModelIndex(), m_categoryList.length(), m_categoryList.length());
 
@@ -75,7 +78,7 @@ CategoryInfo* OffersController::addCategory(const QString &categoryName, const Q
     category->setName(categoryName);
     category->setHeader(categoryHeader);
     category->setDescription(categoryDescription);
-    category->setElements(categoryElements);
+    category->setLocations(categoryLocations);
 
     m_categoryList << category;
 

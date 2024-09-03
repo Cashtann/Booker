@@ -90,7 +90,7 @@ Page {
             required property string categoryName
             required property string categoryHeader
             required property string categoryDescription
-            required property QtObject categoryElements
+            required property QtObject categoryLocations
 
             height: categoryHeaderText.implicitHeight + categoryDescriptionText.implicitHeight + styles.previewOfferHeight
 
@@ -164,20 +164,18 @@ Page {
                     bottom: parent.bottom
                 }
                 clip: true
-                model: delegate.categoryElements
+                model: delegate.categoryLocations
                 spacing: styles.previewOfferSpacing
                 interactive: false
 
                 delegate: Item {
                     id: element
 
-                    required property string elementName
-                    required property string elementHeader
-                    required property string elementLocation
-                    required property string elementDescription
-                    required property url elementPreviewImageSource
-                    required property real elementPrice
-                    required property real elementAverageRating
+                    required property string locationName
+                    required property string locationDescription
+                    required property url locationImageSource
+                    required property QtObject locationElements
+
                     width: styles.previewOfferWidth
                     height: styles.previewOfferHeight
 
@@ -188,7 +186,7 @@ Page {
                         //height: styles.previewOfferHeight
                         mipmap: true
                         fillMode: Image.PreserveAspectCrop
-                        source: element.elementPreviewImageSource
+                        source: element.locationImageSource
                         anchors {
                             left: parent.left
                             top: parent.top
@@ -213,7 +211,8 @@ Page {
                         anchors.fill: elementPreviewImage
                         onClicked: {
                             //console.log(elements.currentIndex);
-                            stackViewRef.push("qrc:/res/OfferPage.qml", { modelData: element }, StackView.Immediate)
+                            //stackViewRef.push("qrc:/res/OfferPage.qml", { modelData: element }, StackView.Immediate)
+                            stackViewRef.push("OfferPage.qml", { modelData: element }, StackView.Immediate)
                             Manager.currentPage = "Other"
                         }
                     }
@@ -223,7 +222,7 @@ Page {
                         fontSize: styles.h8
                         fontColor: styles.black
                         fontBold: true
-                        textContent: element.elementName
+                        textContent: element.locationName
                         maxLinesCount: 1
                         anchors {
                             left: parent.left
@@ -237,7 +236,7 @@ Page {
                         fontSize: styles.h9
                         fontColor: styles.black
                         fontBold: false
-                        textContent: element.elementHeader
+                        textContent: element.locationDescription
                         maxLinesCount: 2
                         anchors {
                             left: parent.left
