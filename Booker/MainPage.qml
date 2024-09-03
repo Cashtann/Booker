@@ -213,7 +213,7 @@ Page {
                         anchors.fill: elementPreviewImage
                         onClicked: {
                             //console.log(elements.currentIndex);
-                            stackViewRef.push("OfferPage.qml", { modelData: element }, StackView.Immediate)
+                            stackViewRef.push("qrc:/res/OfferPage.qml", { modelData: element }, StackView.Immediate)
                             Manager.currentPage = "Other"
                         }
                     }
