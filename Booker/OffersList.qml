@@ -10,6 +10,7 @@ Page {
 
     height: itemsContainer.height + 200
 
+
     Rectangle {
         id: background
         width: root.width
@@ -23,17 +24,16 @@ Page {
         interactive: false
         boundsBehavior: Flickable.StopAtBounds
 
-        //Rectangle { color: styles.yellowDefault; anchors.fill: parent }
         anchors {
-            top: parent.top
+            //top: parent.top
             topMargin: 50
             horizontalCenter: parent.horizontalCenter
         }
         width: styles.pageWidthContent
-        height: 5000
+        height: contentHeight
         //clip: true
         model: modelData
-        spacing: 100
+        spacing: 500
 
         delegate: Item {
             id: element
@@ -52,7 +52,7 @@ Page {
             }
 
             width: styles.previewOfferWidth
-            height: 500
+            height: 100
             //Rectangle { color: styles.redDefault; anchors.fill: parent }
             Image {
                 id: previewImage

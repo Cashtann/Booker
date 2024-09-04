@@ -207,7 +207,7 @@ Page {
                         ListView {
                             anchors.fill: parent
                             model: element.locationElements
-                            spacing: 15
+                            spacing: 30
                             delegate: Item {
                                 required property string elementName
                                 required property string elementHeader
@@ -216,7 +216,7 @@ Page {
                                 required property real elementPrice
                                 required property real elementAverageRating
                                 required property url elementPreviewImageSource
-                                Image { width: 10; height: 10; source: parent.elementPreviewImageSource }
+                                Image { width: 25; height: 25; source: parent.elementPreviewImageSource }
                             }
                         }
                     }
