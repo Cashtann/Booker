@@ -53,7 +53,6 @@ Window {
                 height: mainPage.height
 
                 onCurrentItemChanged: {
-                        // Adjust the height based on the new currentItem's implicitHeight
                         if (currentItem !== null) {
                             height = currentItem.height
                         }

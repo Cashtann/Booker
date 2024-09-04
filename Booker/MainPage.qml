@@ -146,7 +146,7 @@ Page {
                 anim.running = true;
             }
 
-            NumberAnimation { id: anim; target: locations; property: "contentX"; duration: 300; easing.type: Easing.InOutQuad }
+            NumberAnimation { id: anim; target: locations; property: "contentX"; duration: 400; easing.type: Easing.InOutQuad }
 
 
             ListView {
@@ -270,7 +270,7 @@ Page {
                 imageWidth: 10
                 width: if (opacity === 0) { 0 } else 50
                 height: 50
-                buttonCooldown: 200
+                buttonCooldown: 400
                 anchors {
                     horizontalCenter: locations.right
                     verticalCenter: locations.verticalCenter
@@ -300,7 +300,7 @@ Page {
                 imageWidth: 10
                 width: if (opacity === 0) { 0 } else 50
                 height: 50
-                buttonCooldown: 200
+                buttonCooldown: 400
                 anchors {
                     horizontalCenter: locations.left
                     verticalCenter: locations.verticalCenter

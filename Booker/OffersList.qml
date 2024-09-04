@@ -1,6 +1,7 @@
 import QtQuick
 import Booker
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 
 Page {
     id: root
@@ -25,7 +26,7 @@ Page {
         boundsBehavior: Flickable.StopAtBounds
 
         anchors {
-            //top: parent.top
+            top: parent.top
             topMargin: 50
             horizontalCenter: parent.horizontalCenter
         }
@@ -33,7 +34,7 @@ Page {
         height: contentHeight
         //clip: true
         model: modelData
-        spacing: 500
+        spacing: 100
 
         delegate: Item {
             id: element
@@ -52,30 +53,55 @@ Page {
             }
 
             width: styles.previewOfferWidth
-            height: 100
-            //Rectangle { color: styles.redDefault; anchors.fill: parent }
+            height: previewImage.height
+
+
+            // Rectangle { color: styles.redDefault; anchors.fill: parent }
             Image {
                 id: previewImage
                 source: element.elementPreviewImageSource
-                width: 100
-                height: 100
+                fillMode: Image.PreserveAspectCrop
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.horizontalCenter
+                }
+
+                height: 400
+                layer.enabled: true
+                layer.effect: OpacityMask {
+                    maskSource: ShaderEffectSource {
+                        sourceItem: Rectangle {
+                            width: previewImage.width
+                            height: previewImage.height
+                            radius: 15
+                        }
+                    }
+                }
             }
-            // Rectangle {
-            //     color: styles.redDefault
-            //     width: 100
-            //     height: 100
-            // }
-            Text {
-                id: description
-                width: parent.width / 2
-                height: parent.height
 
-                font.pixelSize: styles.h7
-                color: styles.black
+            Item {
+                id: additionalInfo
+                anchors {
+                    top: parent.top
+                    left: previewImage.right
+                    right: parent.right
+                    bottom: previewImage.bottom
+                }
 
-                text: element.elementName
+                Rectangle { color: styles.greenLight; anchors.fill: parent }
+                Text {
+                    id: description
+                    width: parent.width / 2
+                    height: parent.height
 
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    font.pixelSize: styles.h7
+                    color: styles.black
+
+                    text: element.elementName
+
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
             }
         }
     }
