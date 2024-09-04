@@ -24,6 +24,13 @@ Window {
         }
 
         ScrollPageTemplate {
+            id: scrollView
+            signal goTop()
+            onGoTop: {
+                Qt.callLater(() => {
+                    scrollView.contentItem.contentY = 0
+                })
+            }
 
             AppHeaderSection {
                 id: appHeaderSection
@@ -33,6 +40,10 @@ Window {
                 id: stackView
 
                 signal onInitialItemChanged()
+                signal pageChanged()
+                onPageChanged: {
+                    scrollView.goTop()
+                }
 
                 initialItem: mainPage
                 anchors {

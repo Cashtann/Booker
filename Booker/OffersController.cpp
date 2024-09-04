@@ -18,6 +18,10 @@ OffersController::OffersController(QObject *parent)
 
     LocationModel* location1 = new LocationModel(this);
     location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
+    location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
+    location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
+    location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
+    location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
 
     addCategory("Europe",
                 "Explore Europe",

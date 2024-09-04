@@ -5,7 +5,6 @@ ScrollView {
     anchors.fill: parent
     contentWidth: parent.width
     contentHeight: contentArea.height
-    id: root
 
     default property alias content: contentArea.data
 

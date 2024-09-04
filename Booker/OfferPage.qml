@@ -7,6 +7,7 @@ Page {
     id: root
 
     required property QtObject modelData
+    required property StackView stackViewRef
 
     height: itemsContainer.height + 200
     Rectangle {
@@ -15,6 +16,7 @@ Page {
         height: root.height
         color: styles.mainBackground
     }
+
     Item {
         id: itemsContainer
         anchors {
@@ -37,7 +39,6 @@ Page {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
     }
-
 
     AppStyle { id: styles }
 }

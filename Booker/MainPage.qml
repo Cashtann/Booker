@@ -135,27 +135,27 @@ Page {
             function gotoIndex(idx) {
                 anim.running = false;
 
-                var pos = elements.contentX;
+                var pos = locations.contentX;
                 var destPos;
 
-                elements.positionViewAtIndex(idx, ListView.Beginning);
-                destPos = elements.contentX;
+                locations.positionViewAtIndex(idx, ListView.Beginning);
+                destPos = locations.contentX;
 
                 anim.from = pos;
                 anim.to = destPos;
                 anim.running = true;
             }
 
-            NumberAnimation { id: anim; target: elements; property: "contentX"; duration: 300; easing.type: Easing.InOutQuad }
+            NumberAnimation { id: anim; target: locations; property: "contentX"; duration: 300; easing.type: Easing.InOutQuad }
 
 
             ListView {
-                id: elements
+                id: locations
 
                 boundsBehavior: Flickable.StopAtBounds
                 orientation: ListView.Horizontal
 
-                property int visibleElementCount: (elements.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed()
+                property int visibleElementCount: (locations.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed()
 
                 anchors {
                     left: parent.left
@@ -204,6 +204,21 @@ Page {
                                 }
                             }
                         }
+                        ListView {
+                            anchors.fill: parent
+                            model: element.locationElements
+                            spacing: 15
+                            delegate: Item {
+                                required property string elementName
+                                required property string elementHeader
+                                required property string elementLocation
+                                required property string elementDescription
+                                required property real elementPrice
+                                required property real elementAverageRating
+                                required property url elementPreviewImageSource
+                                Image { width: 10; height: 10; source: parent.elementPreviewImageSource }
+                            }
+                        }
                     }
 
                     MouseArea {
@@ -211,9 +226,10 @@ Page {
                         anchors.fill: elementPreviewImage
                         onClicked: {
                             //console.log(elements.currentIndex);
-                            //stackViewRef.push("qrc:/res/OfferPage.qml", { modelData: element }, StackView.Immediate)
-                            stackViewRef.push("OfferPage.qml", { modelData: element }, StackView.Immediate)
+                            //stackViewRef.push("qrc:/res/OfferPage.qml", { modelData: element, stackViewRef: root.stackViewRef }, StackView.Immediate)
+                            stackViewRef.push("OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
                             Manager.currentPage = "Other"
+                            root.stackViewRef.pageChanged()
                         }
                     }
 
@@ -245,20 +261,6 @@ Page {
                         }
                     }
                 }
-                // currentIndex:   if (count === 0)
-                //                   0
-                //                 else if (count < elements.visibleElementCount)
-                //                 // (count <= ((elements.width / (styles.previewOfferWidth + styles.previewOfferSpacing)).toFixed() - 1))
-                //                     count - 1
-                //                 else elements.visibleElementCount - 1
-                highlightFollowsCurrentItem: true
-                        highlightMoveDuration: 500  // Duration for the scroll animation in milliseconds
-                        highlight: Rectangle {       // Custom highlight item (can be empty or styled)
-                            color: "transparent"     // Use transparent color if you don't want a visible highlight
-                            width: 1
-                            height: 1
-                        }
-
             }
 
             RoundIconButton {
@@ -270,26 +272,24 @@ Page {
                 height: 50
                 buttonCooldown: 200
                 anchors {
-                    horizontalCenter: elements.right
-                    verticalCenter: elements.verticalCenter
+                    horizontalCenter: locations.right
+                    verticalCenter: locations.verticalCenter
                 }
-                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
-                            if (elements.currentIndex >= elements.count - elements.visibleElementCount)
+                opacity: if ((locations.count * styles.previewOfferWidth + (locations.count - 1) * styles.previewOfferSpacing) > locations.width){
+                            if (locations.currentIndex >= locations.count - locations.visibleElementCount)
                                 .3
                             else 1
                          }
                         else 0
                 onClicked: {
                     if (opacity === 1) {
-                        if (elements.currentIndex >= elements.count - elements.visibleElementCount) {
-                            elements.currentIndex = elements.count - elements.visibleElementCount
+                        if (locations.currentIndex >= locations.count - locations.visibleElementCount) {
+                            locations.currentIndex = locations.count - locations.visibleElementCount
                         }
                         else {
-                            elements.incrementCurrentIndex()
+                            locations.incrementCurrentIndex()
                         }
-
-                        //elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
-                        gotoIndex(elements.currentIndex)
+                        gotoIndex(locations.currentIndex)
                     }
                 }
             }
@@ -302,21 +302,19 @@ Page {
                 height: 50
                 buttonCooldown: 200
                 anchors {
-                    horizontalCenter: elements.left
-                    verticalCenter: elements.verticalCenter
+                    horizontalCenter: locations.left
+                    verticalCenter: locations.verticalCenter
                 }
-                opacity: if ((elements.count * styles.previewOfferWidth + (elements.count - 1) * styles.previewOfferSpacing) > elements.width){
-                            if (elements.currentIndex === 0)
+                opacity: if ((locations.count * styles.previewOfferWidth + (locations.count - 1) * styles.previewOfferSpacing) > locations.width){
+                            if (locations.currentIndex === 0)
                                 .3
                             else 1
                          }
                         else 0
                 onClicked: {
                     if (opacity === 1) {
-                        elements.decrementCurrentIndex()
-
-                        //elements.positionViewAtIndex(elements.currentIndex, ListView.Contain)
-                        gotoIndex(elements.currentIndex)
+                        locations.decrementCurrentIndex()
+                        gotoIndex(locations.currentIndex)
                     }
                 }
             }
