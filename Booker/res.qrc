@@ -34,5 +34,6 @@
         <file>assets/images/preview_nyhavn.jpg</file>
         <file>assets/images/preview_san_francisco.jpg</file>
         <file>assets/images/preview_warsaw.jpg</file>
+<!--        <file>OffersList.qml</file>-->
     </qresource>
 </RCC>

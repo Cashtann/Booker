@@ -225,8 +225,7 @@ Page {
                         id: previewOfferMouseArea
                         anchors.fill: elementPreviewImage
                         onClicked: {
-                            //console.log(elements.currentIndex);
-                            //stackViewRef.push("qrc:/res/OfferPage.qml", { modelData: element, stackViewRef: root.stackViewRef }, StackView.Immediate)
+                            //stackViewRef.push("qrc:/res/OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
                             stackViewRef.push("OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
                             Manager.currentPage = "Other"
                             root.stackViewRef.pageChanged()
