@@ -57,6 +57,7 @@ Page {
 
 
             Rectangle {
+                id: entireElementArea
                 color: styles.greyLight
                 anchors.fill: parent
                 radius: previewImage.imgRad
@@ -96,7 +97,7 @@ Page {
                     margins: 20
                 }
 
-                Rectangle { color: styles.greenLight; anchors.fill: parent }
+                // Rectangle { color: styles.greenLight; anchors.fill: parent }
 
                 Text {
                     id: textName
@@ -148,6 +149,10 @@ Page {
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
+            }
+            MouseArea {
+                anchors.fill: entireElementArea
+                hoverEnabled: true
             }
         }
     }

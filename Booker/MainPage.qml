@@ -169,7 +169,7 @@ Page {
                 interactive: false
 
                 delegate: Item {
-                    id: element
+                    id: location
 
                     required property string locationName
                     required property string locationDescription
@@ -186,7 +186,7 @@ Page {
                         //height: styles.previewOfferHeight
                         mipmap: true
                         fillMode: Image.PreserveAspectCrop
-                        source: element.locationImageSource
+                        source: location.locationImageSource
                         anchors {
                             left: parent.left
                             top: parent.top
@@ -206,7 +206,7 @@ Page {
                         }
                         ListView {
                             anchors.fill: parent
-                            model: element.locationElements
+                            model: location.locationElements
                             spacing: 30
                             delegate: Item {
                                 required property string elementName
@@ -225,31 +225,33 @@ Page {
                         id: previewOfferMouseArea
                         anchors.fill: elementPreviewImage
                         onClicked: {
-                            //stackViewRef.push("qrc:/res/OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
-                            offersListLoader.source = "OffersList.qml"
-                            //stackViewRef.push("OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
-                            //offerListLoader.source = "OfferList.qml"
+                            //stackViewRef.push("qrc:/res/OffersList.qml", { modelData: location.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
+                            //offersListLoader.source = "OffersList.qml"
+                            stackViewRef.push("OffersList.qml", { modelData: location.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
                             Manager.currentPage = "Other"
                             root.stackViewRef.pageChanged()
                         }
                     }
 
-                    Loader { id: offersListLoader
-                        onLoaded: {
-                            if (item) {
-                                item.modelData = element.locationElements
-                                item.stackViewRef = root.stackViewRef
-                                stackViewRef.push(item, StackView.Immediate);
-                            }
-                        }
-                    }
+                    // Does not really work (no changes in performance)
+                    // Loader {
+                    //     id: offersListLoader
+                    //     asynchronous: true
+                    //     onLoaded: {
+                    //         if (item) {
+                    //             item.modelData = location.locationElements
+                    //             item.stackViewRef = root.stackViewRef
+                    //             stackViewRef.push(item, StackView.Immediate);
+                    //         }
+                    //     }
+                    // }
 
                     HeaderText {
                         id: previewOfferText1
                         fontSize: styles.h8
                         fontColor: styles.black
                         fontBold: true
-                        textContent: element.locationName
+                        textContent: location.locationName
                         maxLinesCount: 1
                         anchors {
                             left: parent.left
@@ -263,12 +265,12 @@ Page {
                         fontSize: styles.h9
                         fontColor: styles.black
                         fontBold: false
-                        textContent: element.locationDescription
+                        textContent: location.locationDescription
                         maxLinesCount: 2
                         anchors {
                             left: parent.left
                             right: parent.right
-                            bottom: element.bottom
+                            bottom: location.bottom
                         }
                     }
                 }
