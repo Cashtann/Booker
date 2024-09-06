@@ -6,8 +6,8 @@ import Qt5Compat.GraphicalEffects
 Page {
     id: root
 
-    required property QtObject modelData
-    required property StackView stackViewRef
+    property QtObject modelData: null
+    property StackView stackViewRef: null
 
     height: itemsContainer.height + 200
 
@@ -33,7 +33,7 @@ Page {
         width: styles.pageWidthContent
         height: contentHeight
         //clip: true
-        model: modelData
+        model: root.modelData
         spacing: 100
 
         delegate: Item {

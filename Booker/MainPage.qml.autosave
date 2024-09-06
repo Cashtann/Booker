@@ -226,23 +226,25 @@ Page {
                         anchors.fill: elementPreviewImage
                         onClicked: {
                             //stackViewRef.push("qrc:/res/OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
-                            offersListLoader.source = "OffersList.qml"
-                            //stackViewRef.push("OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
+                            //offersListLoader.source = "OffersList.qml"
+                            stackViewRef.push("OffersList.qml", { modelData: element.locationElements, stackViewRef: root.stackViewRef }, StackView.Immediate)
                             //offerListLoader.source = "OfferList.qml"
                             Manager.currentPage = "Other"
                             root.stackViewRef.pageChanged()
                         }
                     }
 
-                    Loader { id: offersListLoader
-                        onLoaded: {
-                            if (item) {
-                                item.modelData = element.locationElements
-                                item.stackViewRef = root.stackViewRef
-                                stackViewRef.push(item, StackView.Immediate);
-                            }
-                        }
-                    }
+                    //// Does not really work (no change in performance)
+                    // Loader { 
+                    //     id: offersListLoader
+                    //     onLoaded: {
+                    //         if (item) {
+                    //             item.modelData = element.locationElements
+                    //             item.stackViewRef = root.stackViewRef
+                    //             stackViewRef.push(item, StackView.Immediate);
+                    //         }
+                    //     }
+                    // }
 
                     HeaderText {
                         id: previewOfferText1
