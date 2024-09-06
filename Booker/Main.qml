@@ -53,10 +53,10 @@ Window {
                 height: mainPage.height
 
                 onCurrentItemChanged: {
-                        if (currentItem !== null) {
-                            height = currentItem.height
-                        }
+                    if (currentItem !== null) {
+                        height = currentItem.height
                     }
+                }
 
                 MainPage {
                     id: mainPage

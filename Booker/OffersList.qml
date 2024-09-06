@@ -2,6 +2,7 @@ import QtQuick
 import Booker
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
+import app.Manager
 
 Page {
     id: offerListPage
@@ -61,6 +62,9 @@ Page {
                 color: styles.greyLight
                 anchors.fill: parent
                 radius: previewImage.imgRad
+                opacity: if (mouseAreaForOfferInOfferList.containsMouse)
+                             .7
+                        else 0
             }
 
             Image {
@@ -138,7 +142,7 @@ Page {
                     anchors {
                         bottom: parent.bottom
                         left: parent.left
-                        right: parent.right
+                        right: parent.horizontalCenter
                     }
 
                     font.pixelSize: styles.h8
@@ -149,10 +153,33 @@ Page {
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
+                Text {
+                    id: textRating
+                    anchors {
+                        bottom: parent.bottom
+                        left: textLocation.right
+                        right: parent.right
+                    }
+
+                    font.pixelSize: styles.h8
+                    color: styles.yellowDefault
+
+                    text: "Rating: " + element.elementAverageRating
+                    elide: Text.ElideRight
+
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
             }
             MouseArea {
+                id: mouseAreaForOfferInOfferList
                 anchors.fill: entireElementArea
                 hoverEnabled: true
+                onClicked: {
+                    offerListPage.stackViewRef.pop(StackView.Immediate)
+                    stackViewRef.push("OfferPage.qml", { modelData: element, stackViewRef: offerListPage.stackViewRef }, StackView.Immediate)
+                    Manager.currentPage = "Other"
+                    offerListPage.stackViewRef.pageChanged()
+                }
             }
         }
     }

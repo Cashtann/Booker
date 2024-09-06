@@ -80,9 +80,9 @@ Item {
                         imageSource: "qrc:/res/assets/icons/icon_bed.svg"
                         isActive: Manager.currentPage === "Home" ? true : false
                         onClicked: {
+                            Manager.currentPage = "Home"
                             if (stackViewRef.currentItem !== stackViewRef.initialItem) {
                                 stackViewRef.pop(StackView.Immediate)
-                                Manager.currentPage = "Home"
                             }
                         }
                     }

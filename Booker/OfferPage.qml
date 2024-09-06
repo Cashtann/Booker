@@ -34,7 +34,7 @@ Page {
             font.pixelSize: styles.h7
             color: styles.black
 
-            text: modelData.locationDescription
+            text: modelData.elementDescription
 
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
