@@ -182,6 +182,8 @@ Page {
                     Image {
                         id: elementPreviewImage
 
+                        asynchronous: true
+
                         width: styles.previewOfferWidth
                         //height: styles.previewOfferHeight
                         mipmap: true
@@ -216,7 +218,7 @@ Page {
                                 required property real elementPrice
                                 required property real elementAverageRating
                                 required property url elementPreviewImageSource
-                                Image { width: 25; height: 25; source: parent.elementPreviewImageSource }
+                                Image { width: 25; height: 25; source: parent.elementPreviewImageSource; asynchronous: true }
                             }
                         }
                     }

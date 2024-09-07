@@ -2,6 +2,7 @@ import QtQuick
 import Booker
 //import QtQuick.Layouts
 import QtQuick.Controls
+import app.Manager
 
 Page {
     id: root
@@ -34,9 +35,14 @@ Page {
             font.pixelSize: styles.h7
             color: styles.black
 
-            text: modelData.elementDescription
+            //text: modelData.elementDescription
+            text: modelData === null ? "Loading..." : modelData.elementDescription
+            Component.onCompleted: {
+                description.text = modelData.elementDescription
+            }
 
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
         }
     }
 

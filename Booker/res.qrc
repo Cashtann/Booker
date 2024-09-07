@@ -29,11 +29,10 @@
         <file>assets/icons/icon_angle_left.svg</file>
         <file>assets/icons/icon_angle_right.svg</file>
         <file>assets/icons/icon_angle_up.svg</file>
-<!--        <file>OfferPage.qml</file>-->
         <file>assets/images/preview_mount_fuji.jpg</file>
         <file>assets/images/preview_nyhavn.jpg</file>
         <file>assets/images/preview_san_francisco.jpg</file>
         <file>assets/images/preview_warsaw.jpg</file>
-<!--        <file>OffersList.qml</file>-->
+        <file>assets/images/loading_error.jpg</file>
     </qresource>
 </RCC>

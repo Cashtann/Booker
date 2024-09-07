@@ -67,9 +67,23 @@ Page {
                         else 0
             }
 
+            Text {
+                anchors {
+                    centerIn: previewImage
+                    fill: previewImage
+                    margins: 20
+                }
+                font.pixelSize: styles.h7
+                text: "Loading..."
+                color: styles.black
+            }
+
             Image {
                 id: previewImage
                 source: element.elementPreviewImageSource
+                //source: modelData === null ? "qrc:/res/assets/images/loading_error.jpg" : element.elementPreviewImageSource
+                asynchronous: true
+
                 fillMode: Image.PreserveAspectCrop
                 anchors {
                     top: parent.top
@@ -115,7 +129,11 @@ Page {
                     font.bold: true
                     color: styles.black
 
-                    text: element.elementName
+                    // text: element.elementName
+                    text: modelData === null ? "Loading..." : element.elementName
+                    Component.onCompleted: {
+                        element.elementName.text = element.elementName
+                    }
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
@@ -131,7 +149,12 @@ Page {
                     font.pixelSize: styles.h7
                     color: styles.black
 
-                    text: element.elementDescription
+                    // text: element.elementDescription
+                    text: modelData === null ? "Loading..." : element.elementDescription
+                    Component.onCompleted: {
+                        textDescription.text = element.elementDescription
+                    }
+
                     elide: Text.ElideRight
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -148,7 +171,11 @@ Page {
                     font.pixelSize: styles.h8
                     color: styles.black
 
-                    text: "Location: " + element.elementLocation
+                    //text: "Location: " + element.elementLocation
+                    text: modelData === null ? "Loading..." : "Location: " + element.elementLocation
+                    Component.onCompleted: {
+                        textLocation.text = "Location: " + element.elementLocation
+                    }
                     elide: Text.ElideRight
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -164,7 +191,11 @@ Page {
                     font.pixelSize: styles.h8
                     color: styles.yellowDefault
 
-                    text: "Rating: " + element.elementAverageRating
+                    //text: "Rating: " + element.elementAverageRating
+                    text: modelData === null ? "Loading..." : "Rating: " + element.elementAverageRating
+                    Component.onCompleted: {
+                        textRating.text = "Rating: " + element.elementAverageRating
+                    }
                     elide: Text.ElideRight
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
