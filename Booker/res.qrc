@@ -34,5 +34,12 @@
         <file>assets/images/preview_san_francisco.jpg</file>
         <file>assets/images/preview_warsaw.jpg</file>
         <file>assets/images/loading_error.jpg</file>
+        <file>assets/icons/icon_contact.svg</file>
+        <file>assets/icons/icon_dollar.svg</file>
+        <file>assets/icons/icon_full_star.svg</file>
+        <file>assets/icons/icon_gps.svg</file>
+        <file>assets/icons/icon_info.svg</file>
+        <file>assets/icons/icon_trash_can_full.svg</file>
+        <file>assets/icons/icon_contact2.svg</file>
     </qresource>
 </RCC>

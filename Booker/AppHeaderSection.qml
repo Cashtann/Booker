@@ -89,12 +89,12 @@ Item {
 
                     IconButton {
                         buttonTextContent: "About"
-                        imageSource: "qrc:/res/assets/icons/icon_person.svg"
+                        imageSource: "qrc:/res/assets/icons/icon_info.svg"
                     }
 
                     IconButton {
                         buttonTextContent: "Contact"
-                        imageSource: "qrc:/res/assets/icons/icon_calendar_default.svg"
+                        imageSource: "qrc:/res/assets/icons/icon_contact2.svg"
                     }
 
                     IconButton {
