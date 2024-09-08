@@ -11,10 +11,10 @@ Item {
     property int contentSize: styles.h8
     property color textColor: styles.yellowDefault
     property color iconColorTrue: styles.yellowDefault
-    property color iconColorFalse: styles.greyDarker
+    property color iconColorFalse: styles.grey
     required property real rating
 
-    width: text.implicitWidth + img.width
+    width: text.implicitWidth + starRow.width
     height: 2 * contentSize
     //Rectangle { anchors.fill: parent; color: styles.redDefault }
 
@@ -30,7 +30,6 @@ Item {
 
     Component.onCompleted: {
         validateRating(rating)
-        console.log(rating)
     }
 
     Text {
@@ -53,30 +52,67 @@ Item {
             left: parent.left
         }
     }
+    Row {
+        id: starRow
+        anchors {
+            left: text.right
+            top: text.top
+            bottom: text.bottom
+        }
 
-    Repeater {
-        model: Math.floor(rating)
-        Item {
-            Image {
-                id: star
+        Repeater {
+            model: 5
+            delegate: Item {
+                id: delegate
+                width: starFalse.width
+                height: starFalse.height
+                Image {
+                    id: starFalse
 
-                source: root.imageSource
+                    source: root.imageSource
 
-                height: 1.5 * root.contentSize
-                fillMode: Image.PreserveAspectFit
-                anchors {
-                    left: root.left
-                    verticalCenter: root.verticalCenter
-                    leftMargin: .5 * root.contentSize
+                    height: root.contentSize
+                    fillMode: Image.PreserveAspectFit
+                    layer.enabled: true
+                    layer.effect: ColorOverlay {
+                        color: root.iconColorFalse
+                        source: starFalse
+                    }
                 }
-            }
-            ColorOverlay {
-                anchors.fill: star
-                source: star
-                color: root.iconColor
+                Image {
+                    id: starTrue
+                    anchors {
+                        //top: starFalse.top
+                        //left: starFalse.left
+                        //horizontalCenter: parent.horizontalCenter
+                    }
+                    horizontalAlignment: Image.AlignLeft
+                    source: starFalse.source
+                    //width: starFalse.width
+                    width:  if (index + 1 <= rating) starFalse.width;
+                            else if (index + 1 > rating && index < rating) (starFalse.width * (rating - index));
+                            else 0
+                    height: starFalse.height
+                    fillMode: Image.PreserveAspectCrop
+                    layer.enabled: true
+                    layer.effect: ColorOverlay {
+                        color: root.iconColorTrue
+                        source: starTrue
+                    }
+                }
+                // ColorOverlay {
+                //     //anchors.fill: starFull
+                //     width: starFull.width
+                //     height: starFull.height
+                //     source: starFull
+                //     //color: root.iconColorTrue
+                //     color: if (index + 1 <= rating) root.iconColorTrue
+                //             else root.iconColorFalse
+                // }
             }
         }
     }
+
 
     // Image {
     //     id: img

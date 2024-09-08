@@ -181,29 +181,34 @@ Page {
                     }
                 }
 
-                Text {
-                    id: textRating
+                // Text {
+                //     id: textRating
+                //     anchors {
+                //         bottom: parent.bottom
+                //         left: textLocation.right
+                //         right: parent.right
+                //     }
+
+                //     font.pixelSize: styles.h8
+                //     color: styles.yellowDefault
+
+                //     //text: "Rating: " + element.elementAverageRating
+                //     text: modelData === null ? "Loading..." : "Rating: " + element.elementAverageRating
+                //     Component.onCompleted: {
+                //         textRating.text = "Rating: " + element.elementAverageRating
+                //     }
+                //     elide: Text.ElideRight
+
+                //     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                // }
+                StarRating {
+                    textContent: "Rating: " + element.elementAverageRating
+                    rating: element.elementAverageRating
                     anchors {
-                        bottom: parent.bottom
                         left: textLocation.right
                         right: parent.right
+                        bottom: parent.bottom
                     }
-
-                    font.pixelSize: styles.h8
-                    color: styles.yellowDefault
-
-                    //text: "Rating: " + element.elementAverageRating
-                    text: modelData === null ? "Loading..." : "Rating: " + element.elementAverageRating
-                    Component.onCompleted: {
-                        textRating.text = "Rating: " + element.elementAverageRating
-                    }
-                    elide: Text.ElideRight
-
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
-                StarRating {
-                    textContent: "test"
-                    rating: 6.3
                 }
             }
             MouseArea {

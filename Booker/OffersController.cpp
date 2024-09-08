@@ -11,10 +11,10 @@ OffersController::OffersController(QObject *parent)
 {
     ElementModel* element1 = new ElementModel(this);
     //element->name = "test";
-    element1->addElement("Cracow", "Meet pigeons", "Poland", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 12);
-    element1->addElement("Moscow", "Taste the strongest beverages", "Russia", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_moscow.jpg"), 34, 34);
-    element1->addElement("London", "Better learn to run", "Great Britain", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_london.jpg"), 56, 56);
-    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 56);
+    element1->addElement("Cracow", "Meet pigeons", "Poland", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_cracow.jpg"), 12, 5);
+    element1->addElement("Moscow", "Taste the strongest beverages", "Russia", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_moscow.jpg"), 34, 2.3);
+    element1->addElement("London", "Better learn to run", "Great Britain", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_london.jpg"), 56, 4.5);
+    element1->addElement("Copenhagen", "Not enough bikes?", "Denmark", Utilities::loremIpsum, QUrl("qrc:/res/assets/images/preview_copenhagen.jpg"), 56, 3.2);
 
     LocationModel* location1 = new LocationModel(this);
     location1->addLocation("Poland", "The land of blooming onions", QUrl("qrc:/res/assets/images/preview_warsaw.jpg"), element1);
