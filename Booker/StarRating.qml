@@ -81,11 +81,6 @@ Item {
                 }
                 Image {
                     id: starTrue
-                    anchors {
-                        //top: starFalse.top
-                        //left: starFalse.left
-                        //horizontalCenter: parent.horizontalCenter
-                    }
                     horizontalAlignment: Image.AlignLeft
                     source: starFalse.source
                     //width: starFalse.width

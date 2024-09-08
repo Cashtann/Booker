@@ -11,9 +11,10 @@ Item {
     property int contentSize: styles.h10
     property color textColor: styles.black
     property color iconColor: styles.black
+    property real heightMultiplier: 2
 
     width: text.implicitWidth + img.width
-    height: 2 * contentSize
+    height: heightMultiplier * contentSize
     //Rectangle { anchors.fill: parent; color: styles.redDefault }
 
     Image {

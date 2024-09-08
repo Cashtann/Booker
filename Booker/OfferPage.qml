@@ -67,6 +67,59 @@ Page {
             }
         }
 
+        Item {
+            id: imgRightSide
+            anchors {
+                left: previewImage.right
+                top: previewImage.top
+                bottom: previewImage.bottom
+                right: parent.right
+                margins: 20
+            }
+
+            Text {
+                id: textName
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+
+                font.pixelSize: styles.h6
+                elide: Text.ElideRight
+                font.bold: true
+                color: styles.black
+
+                // text: element.elementName
+                text: modelData === null ? "Loading..." : modelData.elementName
+                Component.onCompleted: {
+                    textName.text = modelData.elementName
+                }
+
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+
+            IconText {
+                id: textLocation
+                anchors {
+                    top: textName.bottom
+                    left: parent.left
+                }
+                heightMultiplier: 2.5
+
+                contentSize: styles.h8
+                textColor: styles.black
+                iconColor: styles.blueDefault
+                imageSource: "qrc:/res/assets/icons/icon_gps.svg"
+
+                //text: "Location: " + element.elementLocation
+                textContent: modelData === null ? "Loading..." : "Location: " + modelData.elementLocation
+                Component.onCompleted: {
+                    textLocation.textContent = "Location: " + modelData.elementLocation
+                }
+            }
+        }
+
         Text {
             id: description
 

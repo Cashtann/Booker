@@ -137,13 +137,35 @@ Page {
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
-                Text {
-                    id: textDescription
+
+                IconText {
+                    id: textLocation
                     anchors {
                         top: textName.bottom
                         left: parent.left
                         right: parent.right
-                        bottom: textLocation.top
+                    }
+                    heightMultiplier: 2.5
+
+                    contentSize: styles.h8
+                    textColor: styles.black
+                    iconColor: styles.blueDefault
+                    imageSource: "qrc:/res/assets/icons/icon_gps.svg"
+
+                    //text: "Location: " + element.elementLocation
+                    textContent: modelData === null ? "Loading..." : "Location: " + element.elementLocation
+                    Component.onCompleted: {
+                        textLocation.textContent = "Location: " + element.elementLocation
+                    }
+                }
+
+                Text {
+                    id: textDescription
+                    anchors {
+                        top: textLocation.bottom
+                        left: parent.left
+                        right: parent.right
+                        bottom: starRating.top
                     }
 
                     font.pixelSize: styles.h7
@@ -161,55 +183,35 @@ Page {
                 }
 
 
-                IconText {
-                    id: textLocation
+
+                StarRating {
+                    id: starRating
+                    textContent: "Rating: " + element.elementAverageRating + " "
+                    rating: element.elementAverageRating
                     anchors {
                         bottom: parent.bottom
                         left: parent.left
                         right: parent.horizontalCenter
                     }
-
-                    contentSize: styles.h8
-                    textColor: styles.black
-                    iconColor: styles.blueDefault
-                    imageSource: "qrc:/res/assets/icons/icon_gps.svg"
-
-                    //text: "Location: " + element.elementLocation
-                    textContent: modelData === null ? "Loading..." : "Location: " + element.elementLocation
-                    Component.onCompleted: {
-                        textLocation.textContent = "Location: " + element.elementLocation
-                    }
                 }
 
-                // Text {
-                //     id: textRating
-                //     anchors {
-                //         bottom: parent.bottom
-                //         left: textLocation.right
-                //         right: parent.right
-                //     }
-
-                //     font.pixelSize: styles.h8
-                //     color: styles.yellowDefault
-
-                //     //text: "Rating: " + element.elementAverageRating
-                //     text: modelData === null ? "Loading..." : "Rating: " + element.elementAverageRating
-                //     Component.onCompleted: {
-                //         textRating.text = "Rating: " + element.elementAverageRating
-                //     }
-                //     elide: Text.ElideRight
-
-                //     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                // }
-                StarRating {
-                    textContent: "Rating: " + element.elementAverageRating
-                    rating: element.elementAverageRating
+                Text {
+                    id: clickForMoreText
                     anchors {
-                        left: textLocation.right
+                        left: starRating.right
                         right: parent.right
-                        bottom: parent.bottom
+                        verticalCenter: starRating.verticalCenter
                     }
+
+                    //horizontalAlignment: Text.AlignHCenter
+                    horizontalAlignment: Text.AlignLeft
+                    font.pixelSize: styles.h9
+                    color: styles.blueDefault
+
+                    // text: element.elementDescription
+                    text: ">> Click for more info <<"
                 }
+
             }
             MouseArea {
                 id: mouseAreaForOfferInOfferList
