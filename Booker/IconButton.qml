@@ -11,6 +11,7 @@ Item {
     required property url imageSource
     property int contentSize: styles.h10
     property bool isActive: false
+    property color iconColor: styles.white
 
     // readonly property int margins: contentSize
 
@@ -72,7 +73,7 @@ Item {
     ColorOverlay {
         anchors.fill: img
         source: img
-        color: styles.white
+        color: root.iconColor
     }
 
     Text {

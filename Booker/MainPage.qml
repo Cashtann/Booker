@@ -202,7 +202,7 @@ Page {
                                 sourceItem: Rectangle {
                                     width: elementPreviewImage.width
                                     height: elementPreviewImage.height
-                                    radius: 15
+                                    radius: styles.imageRoundness
                                 }
                             }
                         }

@@ -60,6 +60,8 @@ QtObject {
     readonly property int previewOfferHeight: 400
     readonly property int previewOfferImageMargins: 25
 
+    readonly property int imageRoundness: 15
+
     property bool isLightTheme: true
 
     property color mainBackground: isLightTheme ? white : black

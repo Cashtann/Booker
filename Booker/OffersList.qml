@@ -90,7 +90,7 @@ Page {
                     left: parent.left
                     right: parent.horizontalCenter
                 }
-                property int imgRad: 15
+                property int imgRad: styles.imageRoundness
 
                 height: 400
                 layer.enabled: true
@@ -160,7 +160,8 @@ Page {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
-                Text {
+
+                IconText {
                     id: textLocation
                     anchors {
                         bottom: parent.bottom
@@ -168,18 +169,18 @@ Page {
                         right: parent.horizontalCenter
                     }
 
-                    font.pixelSize: styles.h8
-                    color: styles.black
+                    contentSize: styles.h8
+                    textColor: styles.black
+                    iconColor: styles.blueDefault
+                    imageSource: "qrc:/res/assets/icons/icon_gps.svg"
 
                     //text: "Location: " + element.elementLocation
-                    text: modelData === null ? "Loading..." : "Location: " + element.elementLocation
+                    textContent: modelData === null ? "Loading..." : "Location: " + element.elementLocation
                     Component.onCompleted: {
-                        textLocation.text = "Location: " + element.elementLocation
+                        textLocation.textContent = "Location: " + element.elementLocation
                     }
-                    elide: Text.ElideRight
-
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
+
                 Text {
                     id: textRating
                     anchors {
@@ -199,6 +200,10 @@ Page {
                     elide: Text.ElideRight
 
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+                StarRating {
+                    textContent: "test"
+                    rating: 6.3
                 }
             }
             MouseArea {
