@@ -118,6 +118,42 @@ Page {
                     textLocation.textContent = "Location: " + modelData.elementLocation
                 }
             }
+
+            IconText {
+                id: textPrice
+                anchors {
+                    top: textLocation.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+                heightMultiplier: 2.5
+
+                contentSize: styles.h8
+                textColor: styles.black
+                iconColor: styles.greenMedium
+                imageSource: "qrc:/res/assets/icons/icon_dollar.svg"
+
+                //text: "Location: " + element.elementLocation
+                textContent: modelData === null ? "Loading..." : "Price per night: " + modelData.elementPrice.toFixed(2) + "$"
+                Component.onCompleted: {
+                    textPrice.textContent = "Price per night: " + modelData.elementPrice.toFixed(2) + "$"
+                }
+            }
+
+            StarRating {
+                id: starRating
+                textContent: "Rating: " + modelData.elementAverageRating.toFixed(2) + " "
+                Component.onCompleted: {
+                    starRating.textContent = "Rating: " + modelData.elementAverageRating.toFixed(2) + " "
+                }
+                rating: modelData.elementAverageRating
+                anchors {
+                    top: textPrice.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+
         }
 
         Text {

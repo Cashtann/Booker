@@ -4,6 +4,8 @@ import Booker
 QtObject {
     id: styleObject
 
+    readonly property string authorUrl: "https://github.com/Cashtann"
+
     readonly property int minApplicationWidth: 100
     readonly property int minApplicationHeight: 100
 

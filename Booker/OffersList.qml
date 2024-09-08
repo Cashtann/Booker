@@ -186,7 +186,10 @@ Page {
 
                 StarRating {
                     id: starRating
-                    textContent: "Rating: " + element.elementAverageRating + " "
+                    textContent: "Rating: " + element.elementAverageRating.toFixed(1) + " "
+                    Component.onCompleted: {
+                        starRating.textContent = "Rating: " + element.elementAverageRating.toFixed(1) + " "
+                    }
                     rating: element.elementAverageRating
                     anchors {
                         bottom: parent.bottom

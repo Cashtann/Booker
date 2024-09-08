@@ -83,6 +83,7 @@ Item {
                             if (stackViewRef.currentItem !== stackViewRef.initialItem) {
                                 stackViewRef.pop(StackView.Immediate)
                             }
+                            if (Manager.currentPage !== "About")
                             Manager.currentPage = "Home"
                         }
                     }
