@@ -63,6 +63,7 @@ QtObject {
     readonly property int previewOfferImageMargins: 25
 
     readonly property int imageRoundness: 15
+    readonly property int squareButtonRoundness: 10
 
     property bool isLightTheme: true
 
