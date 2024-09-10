@@ -52,7 +52,7 @@ Page {
             font.pixelSize: styles.h6
             color: styles.black
             anchors {
-                top: title.top
+                top: title.bottom
                 left: parent.left
                 right: parent.right
             }
