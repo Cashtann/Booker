@@ -154,6 +154,13 @@ Page {
                 }
             }
 
+            // ColoredButton {
+            //     id: buyButton
+
+            // }
+
+
+
         }
 
         Text {
