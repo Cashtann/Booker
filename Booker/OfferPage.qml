@@ -156,7 +156,7 @@ Page {
 
             // ColoredButton {
             //     id: buyButton
-
+            //     textContent: "Book now"
             // }
 
 

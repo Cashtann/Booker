@@ -67,6 +67,15 @@ Page {
         }
     }
 
+    ColoredButton {
+        id: buyButton
+        textContent: "Book now"
+        anchors {
+            left: itemsContainer.left
+            bottom: itemsContainer.top
+        }
+    }
+
     ListView {
         id: itemsContainer
 
