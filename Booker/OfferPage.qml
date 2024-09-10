@@ -154,10 +154,16 @@ Page {
                 }
             }
 
-            // ColoredButton {
-            //     id: buyButton
-            //     textContent: "Book now"
-            // }
+            ColoredButton {
+                id: buyButton
+                textContent: "Book now"
+                anchors {
+                    top: starRating.bottom
+                    left: parent.left
+                    margins: 10
+                }
+                onClicked: Manager.debug()
+            }
 
 
 

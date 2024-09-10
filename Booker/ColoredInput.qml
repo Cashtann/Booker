@@ -9,7 +9,7 @@ Item {
     property color outerColor: styles.blueDefault
     property color placeHolderTextColor: styles.greyDarker
     property color inputTextColor: styles.black
-    property int contentSize: styles.h8
+    property int contentSize: styles.h6
 
 
     AppStyle { id: styles }
