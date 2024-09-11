@@ -29,6 +29,21 @@ Page {
         width: styles.pageWidthContent
         height: description.height + previewImage.height + 200
 
+        MouseArea {
+            id: inputCatcher
+            //anchors.fill: itemsContainer
+            width: itemsContainer.width + 10000
+            height: itemsContainer.height + 10000
+            x: -5000
+            y: -5000
+
+            //Rectangle { anchors.fill: parent; color: styles.redDefault }
+
+            onClicked: {
+                inputCatcher.focus = true
+            }
+        }
+
         Text {
             anchors {
                 centerIn: previewImage
@@ -177,6 +192,7 @@ Page {
                     }
                     onClicked: {
                         Manager.printString("test")
+                        starRating.focus = true
                     }
                 }
                 ColoredInput {
