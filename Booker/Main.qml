@@ -65,12 +65,6 @@ Window {
                     stackViewRef: stackView
                 }
             }
-
-            // MainPage {
-            //     id: mainPage
-            //     width: parent.width
-            //     anchors.horizontalCenter: parent.horizontalCenter
-            // }
         }
 
     }

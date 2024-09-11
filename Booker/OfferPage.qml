@@ -188,12 +188,6 @@ Page {
                         leftMargin: buyContainer.childrenSpacing
                     }
                 }
-                MouseArea {
-                    anchors.fill: stackViewRef
-                    onClicked: {
-                        console.log("hi there")
-                    }
-                }
             }
         }
 

@@ -10,8 +10,8 @@ QtObject {
     readonly property int minApplicationHeight: 100
 
     readonly property int appHeaderSectionHeight: 125
-
     readonly property int pageWidthContent: 1200
+
 
     readonly property int       t1 : 14
     readonly property int       t2 : 12
