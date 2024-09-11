@@ -13,6 +13,8 @@ Item {
     property bool isActive: false
     property color iconColor: styles.white
 
+    z: 100
+
     // readonly property int margins: contentSize
 
     signal clicked

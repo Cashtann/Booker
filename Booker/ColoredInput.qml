@@ -50,7 +50,7 @@ Item {
             font.pixelSize: root.contentSize
 
             validator: IntValidator {
-                bottom: 0  // You can specify the range, for example 0 to 999
+                bottom: 1  // You can specify the range, for example 0 to 999
                 top: 9999
             }
 

@@ -35,9 +35,9 @@ Page {
             width: itemsContainer.width + 10000
             height: itemsContainer.height + 10000
             x: -5000
-            y: -5000
+            y: -50
 
-            //Rectangle { anchors.fill: parent; color: styles.redDefault }
+            Rectangle { anchors.fill: parent; color: styles.redDefault }
 
             onClicked: {
                 inputCatcher.focus = true
