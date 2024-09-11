@@ -154,19 +154,47 @@ Page {
                 }
             }
 
-            ColoredButton {
-                id: buyButton
-                textContent: "Book now"
+            Rectangle {
+                id: buyContainer
+                color: styles.yellowDefault
+                radius: styles.squareButtonRoundness
+                property int childrenSpacing: 4
+                height: buyButton.height + 2 * childrenSpacing
+                width: buyButton.width + inputField.width + 3 * childrenSpacing
                 anchors {
                     top: starRating.bottom
                     left: parent.left
-                    margins: 10
+                    topMargin: 10
                 }
-                onClicked: Manager.debug()
+
+                ColoredButton {
+                    id: buyButton
+                    textContent: "Book now"
+                    anchors {
+                        left: parent.left
+                        verticalCenter: parent.verticalCenter
+                        leftMargin: buyContainer.childrenSpacing
+                    }
+                    onClicked: {
+                        Manager.printString("test")
+                    }
+                }
+                ColoredInput {
+                    id: inputField
+                    placeHolderText: "1 night"
+                    anchors {
+                        left: buyButton.right
+                        verticalCenter: parent.verticalCenter
+                        leftMargin: buyContainer.childrenSpacing
+                    }
+                }
+                MouseArea {
+                    anchors.fill: stackViewRef
+                    onClicked: {
+                        console.log("hi there")
+                    }
+                }
             }
-
-
-
         }
 
         Text {

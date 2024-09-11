@@ -10,6 +10,11 @@ void Manager::debug()
     qDebug() << "[DEBUG] Something happend";
 }
 
+void Manager::printString(const QString &text)
+{
+    qDebug() << "[DEBUG]" << text;
+}
+
 QString Manager::currentPage() const
 {
     return m_currentPage;

@@ -5,19 +5,22 @@ Item {
     id: root
 
     required property string textContent
-    property color buttonColorIdle: styles.blueDefault
-    property color buttonColorHovered: styles.blueDarker
+    property color buttonColorIdle: styles.blueMedium
+    property color buttonColorHovered: styles.blueDefault
     property color buttonColorPressed: styles.blueDarker
     property color textColor: styles.white
-    property int contentSize: styles.h6
+    property int contentSize: styles.h8
     property bool textBold: false
 
     signal clicked()
 
+    width: background.width
+    height: background.height
+
     Rectangle {
         id: background
-        width: text.implicitWidth + root.contentSize
-        height: root.contentSize * 1.8
+        width: text.implicitWidth + root.contentSize * 1.8
+        height: root.contentSize * 2.5
         color: mouseArea.containsPress ? root.buttonColorPressed :
                    (mouseArea.containsMouse ? root.buttonColorHovered : root.buttonColorIdle)
         radius: styles.squareButtonRoundness

@@ -17,6 +17,7 @@ public:
 
 public slots:
     void debug();
+    void printString(const QString& text);
 
 signals:
     void currentPageChanged();

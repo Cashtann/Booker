@@ -37,7 +37,7 @@ QtObject {
     readonly property color black: "#202124"
 
     readonly property color blueDefault: "#174EA6"
-    readonly property color blueMedium: "#4285F4"
+    readonly property color blueMedium: "#006CE4"
     readonly property color blueLight: "#D2E3FC"
     readonly property color blueDarker: "#0635A3"
 
@@ -63,7 +63,7 @@ QtObject {
     readonly property int previewOfferImageMargins: 25
 
     readonly property int imageRoundness: 15
-    readonly property int squareButtonRoundness: 10
+    readonly property int squareButtonRoundness: 7
 
     property bool isLightTheme: true
 
