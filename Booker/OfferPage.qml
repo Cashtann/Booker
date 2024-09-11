@@ -37,7 +37,7 @@ Page {
             x: -5000
             y: -50
 
-            Rectangle { anchors.fill: parent; color: styles.redDefault }
+            //Rectangle { anchors.fill: parent; color: styles.redDefault }
 
             onClicked: {
                 inputCatcher.focus = true
@@ -149,9 +149,9 @@ Page {
                 imageSource: "qrc:/res/assets/icons/icon_dollar.svg"
 
                 //text: "Location: " + element.elementLocation
-                textContent: modelData === null ? "Loading..." : "Price per night: " + modelData.elementPrice.toFixed(2) + "$"
+                textContent: modelData === null ? "Loading..." : "Price per night: $" + modelData.elementPrice.toFixed(2)
                 Component.onCompleted: {
-                    textPrice.textContent = "Price per night: " + modelData.elementPrice.toFixed(2) + "$"
+                    textPrice.textContent = "Price per night: $" + modelData.elementPrice.toFixed(2)
                 }
             }
 
@@ -184,14 +184,15 @@ Page {
 
                 ColoredButton {
                     id: buyButton
-                    textContent: "Book now"
+                    //textContent: "Book now"
+                    textContent: "Add to cart"
                     anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
                         leftMargin: buyContainer.childrenSpacing
                     }
                     onClicked: {
-                        Manager.printString("test")
+                        Manager.printString(inputField.inputValue)
                         starRating.focus = true
                     }
                 }

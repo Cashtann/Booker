@@ -14,6 +14,8 @@ Item {
     property int contentSize: styles.h8
     property TextField inputField: input
 
+    property string inputValue: input.text
+
     implicitWidth: 100
     //width: 100
     //width: outerBackground.width
@@ -50,7 +52,7 @@ Item {
             font.pixelSize: root.contentSize
 
             validator: IntValidator {
-                bottom: 1  // You can specify the range, for example 0 to 999
+                bottom: 1
                 top: 9999
             }
 

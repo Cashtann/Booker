@@ -41,5 +41,7 @@
         <file>assets/icons/icon_info.svg</file>
         <file>assets/icons/icon_trash_can_full.svg</file>
         <file>assets/icons/icon_contact2.svg</file>
+        <file>assets/icons/icon_cart.svg</file>
+        <file>assets/icons/icon_cart2.svg</file>
     </qresource>
 </RCC>

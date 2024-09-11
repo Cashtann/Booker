@@ -37,6 +37,7 @@ QtObject {
     readonly property color black: "#202124"
 
     readonly property color blueDefault: "#174EA6"
+    readonly property color blueDefault2: "#004EC3"
     readonly property color blueMedium: "#006CE4"
     readonly property color blueLight: "#D2E3FC"
     readonly property color blueDarker: "#0635A3"

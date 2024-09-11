@@ -56,6 +56,63 @@ Item {
                     }
                     width: parent.width / 2
                 }
+
+                Row {
+                    id: topButtonsRow
+                    anchors {
+                        //left: parent.left
+                        right: parent.right
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
+                    spacing: 10
+
+                    ColoredButton {
+                        textContent: "Your cart"
+                        anchors.verticalCenter: parent.verticalCenter
+                        contentSize: styles.h11
+                        onClicked: {
+                            if (Manager.currentPage !== "Cart") {
+                                //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
+                                Manager.currentPage = "Cart"
+                            }
+                        }
+                    }
+
+                    ColoredButton {
+                        textContent: "Register"
+                        buttonColorIdle: styles.white
+                        buttonColorHovered: styles.blueLight
+                        buttonColorPressed: styles.blueLight
+                        textColor: styles.blueMedium
+                        anchors.verticalCenter: parent.verticalCenter
+                        contentSize: styles.h11
+                        onClicked: {
+                            if (Manager.currentPage !== "Register") {
+                                //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
+                                //Manager.currentPage = "Register"
+                                console.log("[USER] Register")
+                            }
+                        }
+                    }
+
+                    ColoredButton {
+                        textContent: "Sign in"
+                        buttonColorIdle: styles.white
+                        buttonColorHovered: styles.blueLight
+                        buttonColorPressed: styles.blueLight
+                        textColor: styles.blueMedium
+                        anchors.verticalCenter: parent.verticalCenter
+                        contentSize: styles.h11
+                        onClicked: {
+                            if (Manager.currentPage !== "Sign in") {
+                                //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
+                                //Manager.currentPage = "Sign_in"
+                                console.log("[USER] Sign in")
+                            }
+                        }
+                    }
+                }
             }
 
             Item {
@@ -68,7 +125,7 @@ Item {
                 }
 
                 Row {
-                    id: buttonsRow
+                    id: bottomButtonsRow
 
                     spacing: 10
                     anchors {
@@ -101,7 +158,6 @@ Item {
                                 stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
                                 Manager.currentPage = "About"
                             }
-
                         }
                     }
 

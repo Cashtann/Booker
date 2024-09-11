@@ -6,8 +6,8 @@ Item {
 
     required property string textContent
     property color buttonColorIdle: styles.blueMedium
-    property color buttonColorHovered: styles.blueDefault
-    property color buttonColorPressed: styles.blueDarker
+    property color buttonColorHovered: styles.blueDefault2
+    property color buttonColorPressed: styles.blueDefault
     property color textColor: styles.white
     property int contentSize: styles.h8
     property bool textBold: false
