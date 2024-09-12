@@ -11,6 +11,7 @@ Item {
     property color textColor: styles.white
     property int contentSize: styles.h8
     property bool textBold: false
+    property int buttonCooldown: 1
 
     signal clicked()
 
@@ -43,7 +44,21 @@ Item {
         id: mouseArea
         anchors.fill: background
         hoverEnabled: true
-        onClicked: root.clicked()
+        onClicked: {
+            root.clicked()
+            mouseArea.enabled = false
+            cooldownTimer.start()
+        }
+    }
+
+    Timer {
+        id: cooldownTimer
+        interval: root.buttonCooldown
+        running: false
+        repeat: false
+        onTriggered: {
+            mouseArea.enabled = true
+        }
     }
 
     AppStyle { id: styles }

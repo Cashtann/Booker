@@ -71,11 +71,13 @@ Item {
                         textContent: "Your cart"
                         anchors.verticalCenter: parent.verticalCenter
                         contentSize: styles.h11
+                        buttonCooldown: 200
                         onClicked: {
-                            if (Manager.currentPage !== "Cart") {
-                                //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
-                                Manager.currentPage = "Cart"
-                            }
+                            // if (Manager.currentPage !== "Cart") {
+                            //     //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
+                            //     //Manager.currentPage = "Cart"
+                            // }
+                            popupCart.hidden = !popupCart.hidden
                         }
                     }
 
@@ -87,6 +89,7 @@ Item {
                         textColor: styles.blueMedium
                         anchors.verticalCenter: parent.verticalCenter
                         contentSize: styles.h11
+                        buttonCooldown: 1000
                         onClicked: {
                             if (Manager.currentPage !== "Register") {
                                 //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
@@ -104,6 +107,7 @@ Item {
                         textColor: styles.blueMedium
                         anchors.verticalCenter: parent.verticalCenter
                         contentSize: styles.h11
+                        buttonCooldown: 1000
                         onClicked: {
                             if (Manager.currentPage !== "Sign in") {
                                 //stackViewRef.push("AboutPage.qml", { stackViewRef: stackViewRef }, StackView.Immediate)
@@ -111,6 +115,33 @@ Item {
                                 console.log("[USER] Sign in")
                             }
                         }
+                    }
+                }
+
+                PopupWindow {
+                    id: popupCart
+                    anchors {
+                        top: parent.top
+                        right: parent.right
+                    }
+                    width: hidden ? 0 : implicitWidth
+                    z: 100
+                    Column {
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+
+                        height: 1000
+
+                        spacing: 10
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
                     }
                 }
             }

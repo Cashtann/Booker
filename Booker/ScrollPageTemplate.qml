@@ -20,8 +20,6 @@ ScrollView {
         Column {
             id: contentArea
             width: parent.width
-
-
         }
     }
 }

@@ -186,6 +186,7 @@ Page {
                     id: buyButton
                     //textContent: "Book now"
                     textContent: "Add to cart"
+                    buttonCooldown: 1000
                     anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
