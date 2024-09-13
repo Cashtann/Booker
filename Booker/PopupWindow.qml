@@ -10,53 +10,19 @@ Rectangle {
     property color backgroundColor: styles.white
     property color shadowColor: styles.grey
     property int shadowSize: 12
+    property int popupWidth: 300
+    property int popupHeight: 500
+    readonly property int shadowPlaneSize: 100
 
-    implicitWidth: 300
-    implicitHeight: 500
+    // width: popupWidth + 100
+    // height: popupHeight + 100
+    implicitWidth: popupWidth + shadowPlaneSize
+    implicitHeight: popupHeight + shadowPlaneSize
 
     default property alias content: contentArea.data
 
-    color: backgroundColor
-    radius: 15
-
-    Item {
-        id: container
-        anchors {
-            fill: parent
-            margins: 25
-        }
-
-        // ScrollPageTemplate {
-        //     id: contentArea
-        //     height: 1000
-        //     Rectangle { width: 100; height: 100; color: styles.redDefault }
-        // }
-
-        ScrollView {
-            anchors.fill: parent
-            contentWidth: parent.width
-            contentHeight: contentArea.height
-
-            clip: true
-            ScrollBar.vertical: ScrollBar {
-                width: 0
-                stepSize: 0
-            }
-
-            Flickable {
-                anchors.fill: parent
-                boundsBehavior: Flickable.StopAtBounds
-                Column {
-                    id: contentArea
-                    width: parent.width
-                }
-            }
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-            }
-        }
-    }
+    color: "transparent"
+    //radius: 15
 
     DropShadow {
         anchors.fill: source
@@ -66,7 +32,56 @@ Rectangle {
         radius: root.shadowSize
         samples: 16
         color: root.shadowColor
-        source: root
+        source: background
+    }
+    Rectangle {
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
+        width: root.width - shadowPlaneSize
+        height: root.height - shadowPlaneSize
+
+        id: background
+        color: root.backgroundColor
+        radius: 15
+        Item {
+            id: container
+            anchors {
+                fill: parent
+                margins: 25
+            }
+
+            // ScrollPageTemplate {
+            //     id: contentArea
+            //     //Rectangle { width: 100; height: 100; color: styles.redDefault }
+            // }
+
+            ScrollView {
+                anchors.fill: parent
+                contentWidth: parent.width
+                contentHeight: contentArea.height
+
+                clip: true
+                ScrollBar.vertical: ScrollBar {
+                    width: 0
+                    stepSize: 0
+                }
+
+                Flickable {
+                    anchors.fill: parent
+                    boundsBehavior: Flickable.StopAtBounds
+                    Column {
+                        id: contentArea
+                        width: parent.width
+                    }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                }
+            }
+        }
     }
 
     AppStyle { id: styles }

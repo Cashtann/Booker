@@ -138,3 +138,16 @@ void ElementInfo::setDescription(const QString &newDescription)
     m_description = newDescription;
     emit descriptionChanged();
 }
+
+int ElementInfo::nightsCount() const
+{
+    return m_nightsCount;
+}
+
+void ElementInfo::setNightsCount(int newNightsCount)
+{
+    if (m_nightsCount == newNightsCount)
+        return;
+    m_nightsCount = newNightsCount;
+    emit nightsCountChanged();
+}

@@ -78,6 +78,8 @@ Item {
                             //     //Manager.currentPage = "Cart"
                             // }
                             popupCart.hidden = !popupCart.hidden
+                            console.log(popupCart.hidden ? "Unvisible" : "Visible")
+                            console.log(popupCart.width)
                         }
                     }
 
@@ -117,33 +119,27 @@ Item {
                         }
                     }
                 }
-
+                ///
                 PopupWindow {
                     id: popupCart
                     anchors {
                         top: parent.top
                         right: parent.right
                     }
+                    //hidden: true
                     width: hidden ? 0 : implicitWidth
-                    z: 100
-                    Column {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
+                    z: 200
 
-                        height: 1000
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.blueDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.blueDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
+                        Rectangle { width: 100; height: 100; color: styles.blueDefault }
+                        Rectangle { width: 100; height: 100; color: styles.redDefault }
 
-                        spacing: 10
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                    }
                 }
+                ///
             }
 
             Item {

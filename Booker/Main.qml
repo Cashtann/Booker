@@ -23,34 +23,6 @@ Window {
             fill: parent
         }
 
-        PopupWindow {
-            id: popupCart
-            hidden: false
-            anchors {
-                top: parent.top
-                right: parent.right
-            }
-            width: hidden ? 0 : implicitWidth
-            z: 100
-            Column {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-
-                height: 1000
-
-                spacing: 10
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-                Rectangle { width: 100; height: 100; color: styles.redDefault }
-            }
-        }
-
         ScrollPageTemplate {
             id: scrollView
             signal goTop()
