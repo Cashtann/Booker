@@ -2,6 +2,7 @@ import QtQuick
 import Booker
 import QtQuick.Controls
 import app.Manager
+import app.CartController
 
 Item {
     id: root
@@ -78,8 +79,6 @@ Item {
                             //     //Manager.currentPage = "Cart"
                             // }
                             popupCart.hidden = !popupCart.hidden
-                            console.log(popupCart.hidden ? "Unvisible" : "Visible")
-                            console.log(popupCart.width)
                         }
                     }
 
@@ -119,27 +118,34 @@ Item {
                         }
                     }
                 }
-                ///
-                PopupWindow {
-                    id: popupCart
+            }
+            PopupWindow {
+                id: popupCart
+                anchors {
+                    top: parent.top
+                    horizontalCenter: parent.horizontalCenter
+                    topMargin: 100
+                }
+                //hidden: true
+                popupWidth: 500
+                popupHeight: 800
+                width: hidden ? 0 : implicitWidth
+                z: 200
+                ListView {
                     anchors {
-                        top: parent.top
+                        left: parent.left
                         right: parent.right
                     }
-                    //hidden: true
-                    width: hidden ? 0 : implicitWidth
-                    z: 200
-
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.blueDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.blueDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-                        Rectangle { width: 100; height: 100; color: styles.blueDefault }
-                        Rectangle { width: 100; height: 100; color: styles.redDefault }
-
+                    height: popupCart.popupHeight
+                    model: CartController
+                    spacing: 25
+                    delegate: Item {
+                        id: bookElement
+                        width: popupCart.popupWidth
+                        height: 100
+                        Rectangle { width: 50; height: 50; color: styles.redDefault }
+                    }
                 }
-                ///
             }
 
             Item {

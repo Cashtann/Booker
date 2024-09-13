@@ -4,12 +4,30 @@ import Booker
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
 import app.Manager
+import app.CartController
 
 Page {
     id: root
 
-    required property QtObject modelData
+    property QtObject modelData: null
     required property StackView stackViewRef
+
+    // property string elementName: ""
+    // property string elementHeader: ""
+    // property string elementDescription: ""
+    // property string elementLocation: ""
+    // property url elementPreviewImageSource: ""
+    // property real elementPrice: -1.0
+
+    // Component.onCompleted: {
+    //     elementName = modelData.elementName
+    //     elementHeader = modelData.elementHeader
+    //     elementDescription = modelData.elementHeader
+    //     elementLocation = modelData.elementLocation
+    //     elementPreviewImageSource = modelData.elementPreviewImageSource
+    //     elementPrice = modelData.elementPrice
+    //     console.log(modelData)
+    // }
 
     height: itemsContainer.height + 200
     Rectangle {
@@ -160,6 +178,7 @@ Page {
                 textContent: "Rating: " + modelData.elementAverageRating.toFixed(2) + " "
                 Component.onCompleted: {
                     starRating.textContent = "Rating: " + modelData.elementAverageRating.toFixed(2) + " "
+                    //console.log(modelData)
                 }
                 rating: modelData.elementAverageRating
                 anchors {
@@ -182,8 +201,15 @@ Page {
                     topMargin: 10
                 }
 
+                // Loader {
+                //     id: btnLoader
+                //     active: root.modelData !== null
+                //     source: buyButton
+                // }
+
                 ColoredButton {
                     id: buyButton
+                    property bool loaded: modelData === null ? false : true
                     //textContent: "Book now"
                     textContent: "Add to cart"
                     buttonCooldown: 1000
@@ -192,9 +218,25 @@ Page {
                         verticalCenter: parent.verticalCenter
                         leftMargin: buyContainer.childrenSpacing
                     }
+                    Component.onCompleted: console.log(modelData.elementName)
                     onClicked: {
-                        Manager.printString(inputField.inputValue)
+                        //Manager.printString(inputField.inputValue)
                         starRating.focus = true
+                        //console.log(modelData)
+                        //if (modelData !== null)
+
+                        // CartController.addElementToCart(modelData.elementName,
+                        //                                 modelData.elementLocation,
+                        //                                 modelData.elementPreviewImageSource,
+                        //                                 modelData.elementPrice,
+                        //                                 inputField.inputValue)
+                        CartController.addElementToCart("test",
+                                                        "test2",
+                                                        420.69,
+                                                        "qrc:/res/assets/images/loading_error.jpg",
+                                                        420)
+                        console.log(modelData)
+
                     }
                 }
                 ColoredInput {

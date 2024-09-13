@@ -20,8 +20,6 @@ public:
         ElementPriceRole,
         ElementAverageRatingRole,
         ElementPreviewImageSourceRole
-        // todo: img sources in another qabstractlistmodel so there can be multiple (weird, i know)
-        // something similar with ratings
     };
 
     explicit ElementModel(QObject *parent = nullptr);

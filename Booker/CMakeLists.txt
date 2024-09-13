@@ -51,6 +51,7 @@ qt_add_qml_module(appBooker
         QML_FILES ColoredButton.qml
         QML_FILES ColoredInput.qml
         QML_FILES PopupWindow.qml
+        SOURCES CartController.h CartController.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

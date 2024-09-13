@@ -85,7 +85,7 @@ private:
     QList<int> m_ratings;
     QUrl m_previewImageSource;
     QString m_description;
-    int m_nightsCount;
+    int m_nightsCount = 0;
 };
 
 #endif // ELEMENTINFO_H
