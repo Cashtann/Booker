@@ -3,6 +3,7 @@ import Booker
 import QtQuick.Controls
 import app.Manager
 import app.CartController
+import Qt5Compat.GraphicalEffects
 
 Item {
     id: root
@@ -123,12 +124,13 @@ Item {
                 id: popupCart
                 anchors {
                     top: parent.top
-                    horizontalCenter: parent.horizontalCenter
+                    //horizontalCenter: parent.horizontalCenter
+                    left: parent.horizontalCenter
                     topMargin: 100
                 }
                 //hidden: true
-                popupWidth: 500
-                popupHeight: 800
+                popupWidth: 600
+                popupHeight: 900
                 width: hidden ? 0 : implicitWidth
                 z: 200
                 ListView {
@@ -148,8 +150,37 @@ Item {
                         required property int bookNightsCount
 
                         width: popupCart.popupWidth
-                        height: 100
-                        Rectangle { width: 50; height: 50; color: styles.redDefault }
+                        height: 120
+                        Rectangle { anchors.fill: parent; color: styles.redDefault }
+
+                        Image {
+                            id: bookPreviewImage
+                            source: bookPreviewImage
+                            Component.onCompleted: {
+                                bookPreviewImage.source = bookElement.bookPreviewImageSource
+                            }
+                            height: parent.height
+                            width: height * 1.7
+                            asynchronous: true
+                            anchors {
+                                top: parent.top
+                                left: parent.left
+                                bottom: parent.bottom
+                            }
+                            fillMode: Image.PreserveAspectCrop
+
+                            layer.enabled: true
+                            layer.effect: OpacityMask {
+                                maskSource: ShaderEffectSource {
+                                    sourceItem: Rectangle {
+                                        width: bookPreviewImage.width
+                                        height: bookPreviewImage.height
+                                        radius: 10
+                                    }
+                                }
+                            }
+                        }
+
                         Text {
                             text: bookElement.bookName
                             color: styles.white

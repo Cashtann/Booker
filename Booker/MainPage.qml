@@ -207,21 +207,22 @@ Page {
                                 }
                             }
                         }
-                        ListView {
-                            anchors.fill: parent
-                            model: location.locationElements
-                            spacing: 30
-                            delegate: Item {
-                                required property string elementName
-                                required property string elementHeader
-                                required property string elementLocation
-                                required property string elementDescription
-                                required property real elementPrice
-                                required property real elementAverageRating
-                                required property url elementPreviewImageSource
-                                Image { width: 25; height: 25; source: parent.elementPreviewImageSource; asynchronous: true }
-                            }
-                        }
+                        //// PREVIEW OF LOCATIONS IN CATEGORY
+                        // ListView {
+                        //     anchors.fill: parent
+                        //     model: location.locationElements
+                        //     spacing: 30
+                        //     delegate: Item {
+                        //         required property string elementName
+                        //         required property string elementHeader
+                        //         required property string elementLocation
+                        //         required property string elementDescription
+                        //         required property real elementPrice
+                        //         required property real elementAverageRating
+                        //         required property url elementPreviewImageSource
+                        //         Image { width: 25; height: 25; source: parent.elementPreviewImageSource; asynchronous: true }
+                        //     }
+                        // }
                     }
 
                     MouseArea {

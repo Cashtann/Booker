@@ -18,7 +18,7 @@ Page {
     property string elementLocation
     property url elementPreviewImageSource
     property real elementPrice
-    property QtObject shouldBeLoadedData
+    //property QtObject shouldBeLoadedData
 
     property bool loaded: false
 
@@ -29,11 +29,10 @@ Page {
         elementLocation = modelData.elementLocation
         elementPreviewImageSource = modelData.elementPreviewImageSource
         elementPrice = modelData.elementPrice
-        shouldBeLoadedData = modelData
+        //shouldBeLoadedData = modelData
         loaded = modelData !== null
-        console.log(shouldBeLoadedData)
+        //console.log(shouldBeLoadedData)
     }
-    //Component.onCompleted: { loaded = modelData !== null; console.log(loaded) }
 
     height: itemsContainer.height + 200
     Rectangle {
@@ -282,7 +281,6 @@ Page {
                         buyButtonMouseArea.enabled = false
                         buyButtonCooldownTimer.start()
                         if (root.loaded){
-                            console.log(shouldBeLoadedData)
                             CartController.addElementToCart(
                                         elementName,
                                         elementLocation,
