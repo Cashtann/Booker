@@ -12,6 +12,7 @@ Item {
     property int contentSize: styles.h8
     property bool textBold: false
     property int buttonCooldown: 1
+    property bool defaultMouseAreaEnabled: true
 
     signal clicked()
 
@@ -44,6 +45,7 @@ Item {
         id: mouseArea
         anchors.fill: background
         hoverEnabled: true
+        enabled: root.defaultMouseAreaEnabled
         onClicked: {
             root.clicked()
             mouseArea.enabled = false

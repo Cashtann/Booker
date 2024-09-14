@@ -282,7 +282,6 @@ Page {
                         buyButtonMouseArea.enabled = false
                         buyButtonCooldownTimer.start()
                         if (root.loaded){
-                            console.log(shouldBeLoadedData)
                             CartController.addElementToCart(
                                         elementName,
                                         elementLocation,
