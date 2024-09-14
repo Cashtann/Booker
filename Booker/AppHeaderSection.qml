@@ -141,9 +141,19 @@ Item {
                     spacing: 25
                     delegate: Item {
                         id: bookElement
+                        required property string bookName
+                        required property string bookLocation
+                        required property real bookPrice
+                        required property url bookPreviewImageSource
+                        required property int bookNightsCount
+
                         width: popupCart.popupWidth
                         height: 100
                         Rectangle { width: 50; height: 50; color: styles.redDefault }
+                        Text {
+                            text: bookElement.bookName
+                            color: styles.white
+                        }
                     }
                 }
             }

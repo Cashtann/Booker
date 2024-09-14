@@ -32,6 +32,7 @@ public slots:
                           const qreal& price,
                           const QUrl& imgSource,
                           const QString& nights);
+    void addElementToCart(ElementInfo* newElement);
     void removeElementFromCart(const ElementInfo& element);
 
 signals:

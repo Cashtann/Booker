@@ -71,6 +71,21 @@ void CartController::addElementToCart(const QString &name, const QString &locati
     qDebug() << "Book added!";
 }
 
+void CartController::addElementToCart(ElementInfo* newElement)
+{
+    beginInsertRows(QModelIndex(), m_elementList.length(), m_elementList.length());
+
+    ElementInfo* element = new ElementInfo(this);
+    element->setName(newElement->name());
+
+    m_elementList << element;
+
+    qDebug() << "Book added!";
+    endInsertRows();
+}
+
+
+
 
 
 void CartController::removeElementFromCart(const ElementInfo &element)

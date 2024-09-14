@@ -227,14 +227,15 @@ Page {
 
                         // CartController.addElementToCart(modelData.elementName,
                         //                                 modelData.elementLocation,
-                        //                                 modelData.elementPreviewImageSource,
                         //                                 modelData.elementPrice,
+                        //                                 modelData.elementPreviewImageSource,
                         //                                 inputField.inputValue)
-                        CartController.addElementToCart("test",
-                                                        "test2",
-                                                        420.69,
-                                                        "qrc:/res/assets/images/loading_error.jpg",
-                                                        420)
+                        // CartController.addElementToCart("test",
+                        //                                 "test2",
+                        //                                 420.69,
+                        //                                 "qrc:/res/assets/images/loading_error.jpg",
+                        //                                 420)
+                        CartController.addElementToCart(modelData)
                         console.log(modelData)
 
                     }
