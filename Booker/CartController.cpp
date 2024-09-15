@@ -72,6 +72,8 @@ void CartController::addElementToCart(const QString &name, const QString &locati
 
     endInsertRows();
 
+    setTotalCost(m_totalCost + price * nights.toInt());
+
 
     //qDebug() << "Added element with id:" << m_idCount;
     setIdCount(m_idCount + 1);
@@ -84,6 +86,7 @@ void CartController::removeElementFromCart(const int &idNumber)
         if (m_elementList[i]->id() == idNumber)
         {
             beginRemoveRows(QModelIndex(), i, i);
+            setTotalCost(m_totalCost - m_elementList[i]->price() * m_elementList[i]->nightsCount());
 
             m_elementList[i]->deleteLater();
             m_elementList.removeAt(i);
@@ -106,4 +109,20 @@ void CartController::setIdCount(int newIdCount)
         return;
     m_idCount = newIdCount;
     emit idCountChanged();
+}
+
+qreal CartController::totalCost() const
+{
+    return m_totalCost;
+}
+
+void CartController::setTotalCost(qreal newTotalCost)
+{
+    if (qFuzzyCompare(m_totalCost, newTotalCost))
+        return;
+    if (newTotalCost < 0.0)
+        m_totalCost = 0.0;
+    else
+        m_totalCost = newTotalCost;
+    emit totalCostChanged();
 }

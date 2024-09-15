@@ -53,7 +53,8 @@ QtObject {
 
     readonly property color greenDefault: "#0D652D"
     readonly property color greenMedium: "#34A853"
-    readonly property color greenLight: "#CEEAD6"
+    //readonly property color greenLight: "#CEEAD6"
+    readonly property color greenLight: "#77DD77"
 
     readonly property url mainPageOpeningImage: "qrc:/res/assets/images/mainpage_welcome.png"
 

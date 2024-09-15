@@ -20,7 +20,7 @@ Rectangle {
     implicitWidth: popupWidth + shadowPlaneSize
     implicitHeight: popupHeight + shadowPlaneSize
 
-    default property alias content: contentArea.data
+    default property alias content: container.data
 
     color: "transparent"
     //radius: 15
@@ -53,32 +53,31 @@ Rectangle {
                 margins: root.contentMargin
             }
 
-            // ScrollPageTemplate {
-            //     id: contentArea
-            //     //Rectangle { width: 100; height: 100; color: styles.redDefault }
+            //// ScrollPageTemplate {
+            ////     id: contentArea
+            ////     //Rectangle { width: 100; height: 100; color: styles.redDefault }
+            //// }
+
+            // ScrollView {
+            //     anchors.fill: parent
+            //     contentWidth: parent.width
+            //     contentHeight: contentArea.height
+
+            //     clip: true
+            //     ScrollBar.vertical: ScrollBar {
+            //         width: 0
+            //         stepSize: 0
+            //     }
+
+            //     Flickable {
+            //         anchors.fill: parent
+            //         boundsBehavior: Flickable.StopAtBounds
+            //         Column {
+            //             id: contentArea
+            //             width: parent.width
+            //         }
+            //     }
             // }
-
-            ScrollView {
-                anchors.fill: parent
-                contentWidth: parent.width
-                contentHeight: contentArea.height
-
-                clip: true
-                ScrollBar.vertical: ScrollBar {
-                    width: 0
-                    stepSize: 0
-                }
-
-                Flickable {
-                    anchors.fill: parent
-                    boundsBehavior: Flickable.StopAtBounds
-                    Column {
-                        id: contentArea
-                        width: parent.width
-                    }
-                }
-
-            }
         }
     }
 

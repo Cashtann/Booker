@@ -134,186 +134,245 @@ Item {
                 popupHeight: 850
                 width: hidden ? 0 : implicitWidth
                 z: 200
-                Item {
-                    height: cartList.height + cartHeaderText.height
-                    width: popupCart.popupWidth - 2 * popupCart.contentMargin
                 Text {
                     id: cartHeaderText
                     text: cartList.count === 0 ? "Your cart is empty!" : ("Your cart consists of " + cartList.count + (cartList.count === 1 ? " item" : " items"))
-                    //clip: true
                     font.pixelSize: styles.h6
                     font.bold: true
-                    visible: parent.hidden ? false : true
+                    visible: popupCart.hidden ? false : true
                     color: styles.greyDarker
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    height: font.pixelSize * 2
-                    width: popupCart.popupWidth - 2 * popupCart.contentMargin
                     anchors {
                         top: parent.top
                         left: parent.left
                         right: parent.right
-                        leftMargin: 15
-                        rightMargin: 15
                         //topMargin: 15
                     }
                 }
-                ListView {
-                    id: cartList
+                ScrollView {
+                    //anchors.fill: parent
+                    contentWidth: parent.width
+                    contentHeight: contentArea.height
+                    clip: true
+                    ScrollBar.vertical: ScrollBar {
+                        width: 0
+                        stepSize: 0
+                    }
                     anchors {
                         top: cartHeaderText.bottom
                         left: parent.left
                         right: parent.right
-                        topMargin: 15
+                        bottom: cartBottomSec.top
+                        bottomMargin: popupCart.contentMargin
+                        topMargin: popupCart.contentMargin
                     }
-                    height: popupCart.popupHeight
-                    model: CartController
-                    spacing: 25
-                    boundsBehavior: Flickable.StopAtBounds
-
-                    delegate: Item {
-                        id: bookElement
-                        required property string bookName
-                        required property string bookLocation
-                        required property real bookPrice
-                        required property url bookPreviewImageSource
-                        required property int bookNightsCount
-                        required property int bookId
-
-                        width: popupCart.popupWidth - 2 * popupCart.contentMargin
-
-                        height: 170
-                        //Rectangle { anchors.fill: parent; color: styles.redDefault }
-
-                        Image {
-                            id: bookPreviewImage
-                            source: bookPreviewImage
-                            Component.onCompleted: {
-                                bookPreviewImage.source = bookElement.bookPreviewImageSource
-                            }
-                            height: parent.height
-                            width: height * 1.7
-                            asynchronous: true
+                    Flickable {
+                        id: contentArea
+                        anchors.fill: parent
+                        boundsBehavior: Flickable.StopAtBounds
+                        ListView {
+                            id: cartList
                             anchors {
                                 top: parent.top
                                 left: parent.left
+                                right: parent.right
+                                topMargin: popupCart.contentMargin
                                 bottom: parent.bottom
                             }
-                            fillMode: Image.PreserveAspectCrop
+                            //height: popupCart.popupHeight
+                            model: CartController
+                            spacing: 25
+                            boundsBehavior: Flickable.StopAtBounds
 
-                            layer.enabled: true
-                            layer.effect: OpacityMask {
-                                maskSource: ShaderEffectSource {
-                                    sourceItem: Rectangle {
-                                        width: bookPreviewImage.width
-                                        height: bookPreviewImage.height
-                                        radius: 10
+                            delegate: Item {
+                                id: bookElement
+                                required property string bookName
+                                required property string bookLocation
+                                required property real bookPrice
+                                required property url bookPreviewImageSource
+                                required property int bookNightsCount
+                                required property int bookId
+
+                                width: popupCart.popupWidth - 2 * popupCart.contentMargin
+
+                                height: 170
+                                //Rectangle { anchors.fill: parent; color: styles.redDefault }
+
+                                Image {
+                                    id: bookPreviewImage
+                                    source: bookPreviewImage
+                                    Component.onCompleted: {
+                                        bookPreviewImage.source = bookElement.bookPreviewImageSource
+                                    }
+                                    height: parent.height
+                                    width: height * 1.7
+                                    asynchronous: true
+                                    anchors {
+                                        top: parent.top
+                                        left: parent.left
+                                        bottom: parent.bottom
+                                        leftMargin: 15
+                                    }
+                                    fillMode: Image.PreserveAspectCrop
+
+                                    layer.enabled: true
+                                    layer.effect: OpacityMask {
+                                        maskSource: ShaderEffectSource {
+                                            sourceItem: Rectangle {
+                                                width: bookPreviewImage.width
+                                                height: bookPreviewImage.height
+                                                radius: 10
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Rectangle { width: 100; height: 100; color: styles.greenDefault; anchors { right: parent.right} }
+
+                                Column {
+                                    id: bookPreviewDetails
+                                    anchors {
+                                        //top: parent.top
+                                        //bottom: parent.bottom
+                                        verticalCenter: parent.verticalCenter
+                                        left: bookPreviewImage.right
+                                        right: bookPreviewDeleteButton.left
+                                        leftMargin: 15
+                                    }
+                                    Text {
+                                        id: bookPreviewTextName
+                                        text: bookElement.bookName
+                                        color: styles.black
+                                        font.bold: true
+                                        font.pixelSize: styles.h7
+                                        elide: Text.ElideRight
+                                        anchors {
+                                            //top: parent.top
+                                            left: parent.left
+                                        }
+                                    }
+                                    IconText {
+                                        id: bookPreviewTextLocation
+                                        anchors {
+                                            //top: bookPreviewTextName.bottom
+                                            left: parent.left
+                                        }
+                                        heightMultiplier: 1.8
+                                        contentSize: styles.h11
+                                        textColor: styles.black
+                                        iconColor: styles.blueDefault
+                                        imageSource: "qrc:/res/assets/icons/icon_gps.svg"
+                                        textContent: "Location: " + bookElement.bookLocation
+                                    }
+                                    IconText {
+                                        id: bookPreviewTextPrice
+                                        anchors {
+                                            //top: bookPreviewTextLocation.bottom
+                                            left: parent.left
+                                        }
+                                        heightMultiplier: 1.8
+                                        contentSize: styles.h11
+                                        textColor: styles.black
+                                        iconColor: styles.greenMedium
+                                        imageSource: "qrc:/res/assets/icons/icon_dollar.svg"
+                                        textContent: "Price/night: $" + bookElement.bookPrice.toFixed(2)
+                                    }
+                                    IconText {
+                                        id: bookPreviewTextNightsCount
+                                        anchors {
+                                            //top: bookPreviewTextPrice.bottom
+                                            left: parent.left
+                                        }
+                                        heightMultiplier: 1.8
+                                        contentSize: styles.h11
+                                        textColor: styles.black
+                                        iconColor: styles.greyDarker
+                                        imageSource: "qrc:/res/assets/icons/icon_sleep.svg"
+                                        textContent: bookElement.bookNightsCount.toString() + (bookElement.bookNightsCount === 1 ? " night" : " nights")
+                                    }
+                                    IconText {
+                                        id: bookPreviewTextTotal
+                                        anchors {
+                                            //top: bookPreviewTextNightsCount.bottom
+                                            left: parent.left
+                                        }
+                                        heightMultiplier: 1.8
+                                        contentSize: styles.h11
+                                        textColor: styles.black
+                                        iconColor: styles.yellowDefault
+                                        imageSource: "qrc:/res/assets/icons/icon_calc2.svg"
+                                        textContent: "Total of: $" + (bookElement.bookNightsCount * bookElement.bookPrice).toFixed(2)
+                                    }
+                                }
+                                SquareIconButton {
+                                    id: bookPreviewDeleteButton
+                                    imageSource: "qrc:/res/assets/icons/icon_trash_can_full.svg"
+                                    imageColorIdle: styles.redMedium
+                                    imageColorHovered: styles.white
+                                    imageColorPressed: styles.white
+                                    buttonColorIdle: styles.redLight
+                                    buttonColorHovered: styles.redMedium
+                                    buttonColorPressed: styles.redDefault
+                                    imgWidth: 30
+                                    width: 75
+                                    height: 75
+                                    anchors {
+                                        right: parent.right
+                                        verticalCenter: parent.verticalCenter
+                                        rightMargin: 25
+                                    }
+                                    onClicked: {
+                                        CartController.removeElementFromCart(bookElement.bookId)
                                     }
                                 }
                             }
                         }
-
-                        //Rectangle { width: 100; height: 100; color: styles.greenDefault; anchors { right: parent.right} }
-
-                        Column {
-                            id: bookPreviewDetails
-                            anchors {
-                                //top: parent.top
-                                //bottom: parent.bottom
-                                verticalCenter: parent.verticalCenter
-                                left: bookPreviewImage.right
-                                right: bookPreviewDeleteButton.left
-                                leftMargin: 15
-                            }
-                            Text {
-                                id: bookPreviewTextName
-                                text: bookElement.bookName
-                                color: styles.black
-                                font.bold: true
-                                font.pixelSize: styles.h7
-                                elide: Text.ElideRight
-                                anchors {
-                                    //top: parent.top
-                                    left: parent.left
-                                }
-                            }
-                            IconText {
-                                id: bookPreviewTextLocation
-                                anchors {
-                                    //top: bookPreviewTextName.bottom
-                                    left: parent.left
-                                }
-                                heightMultiplier: 1.8
-                                contentSize: styles.h11
-                                textColor: styles.black
-                                iconColor: styles.blueDefault
-                                imageSource: "qrc:/res/assets/icons/icon_gps.svg"
-                                textContent: "Location: " + bookElement.bookLocation
-                            }
-                            IconText {
-                                id: bookPreviewTextPrice
-                                anchors {
-                                    //top: bookPreviewTextLocation.bottom
-                                    left: parent.left
-                                }
-                                heightMultiplier: 1.8
-                                contentSize: styles.h11
-                                textColor: styles.black
-                                iconColor: styles.greenMedium
-                                imageSource: "qrc:/res/assets/icons/icon_dollar.svg"
-                                textContent: "Price/night: $" + bookElement.bookPrice.toFixed(2)
-                            }
-                            IconText {
-                                id: bookPreviewTextNightsCount
-                                anchors {
-                                    //top: bookPreviewTextPrice.bottom
-                                    left: parent.left
-                                }
-                                heightMultiplier: 1.8
-                                contentSize: styles.h11
-                                textColor: styles.black
-                                iconColor: styles.greyDarker
-                                imageSource: "qrc:/res/assets/icons/icon_sleep.svg"
-                                textContent: bookElement.bookNightsCount.toString() + (bookElement.bookNightsCount === 1 ? " night" : " nights")
-                            }
-                            IconText {
-                                id: bookPreviewTextTotal
-                                anchors {
-                                    //top: bookPreviewTextNightsCount.bottom
-                                    left: parent.left
-                                }
-                                heightMultiplier: 1.8
-                                contentSize: styles.h11
-                                textColor: styles.black
-                                iconColor: styles.yellowDefault
-                                imageSource: "qrc:/res/assets/icons/icon_calc2.svg"
-                                textContent: "Your total is: $" + (bookElement.bookNightsCount * bookElement.bookPrice).toFixed(2)
-                            }
-                        }
-                        SquareIconButton {
-                            id: bookPreviewDeleteButton
-                            imageSource: "qrc:/res/assets/icons/icon_trash_can_full.svg"
-                            imageColorIdle: styles.redMedium
-                            imageColorHovered: styles.white
-                            imageColorPressed: styles.white
-                            buttonColorIdle: styles.redLight
-                            buttonColorHovered: styles.redMedium
-                            buttonColorPressed: styles.redDefault
-                            imgWidth: 30
-                            width: 75
-                            height: 75
-                            anchors {
-                                right: parent.right
-                                verticalCenter: parent.verticalCenter
-                                rightMargin: 25
-                            }
-                            onClicked: {
-                                CartController.removeElementFromCart(bookElement.bookId)
-                            }
-                        }
                     }
                 }
+                Item {
+                    id: cartBottomSec
+                    anchors {
+                        bottom: parent.bottom
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: cartBookButton.height
+                    visible: popupCart.hidden ? false : true
+                    //Rectangle { anchors.fill: parent; color: styles.redDefault }
+                    Text {
+                        id: cartTotalCostText
+                        anchors {
+                            left: parent.left
+                            leftMargin: 25
+                            verticalCenter: cartBookButton.verticalCenter
+                        }
+                        visible: popupCart.hidden ? false : true
+                        text: "Total: $" + CartController.totalCost.toFixed(2)
+                        color: styles.black
+                        font.pixelSize: styles.h6
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    ColoredButton {
+                        id: cartBookButton
+                        textContent: "Book now"
+                        buttonColorIdle: styles.greenMedium
+                        buttonColorHovered: styles.greenLight
+                        buttonColorPressed: styles.greenMedium
+                        textBold: true
+                        textColor: styles.white
+                        anchors {
+                            right: parent.right
+                        }
+                        visible: cartList.count === 0 ? false : true
+                        contentSize: styles.h8
+                        buttonCooldown: 500
+                        onClicked: {
+                            console.log("Booked")
+                        }
+                    }
                 }
             }
 
