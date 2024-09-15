@@ -73,7 +73,7 @@ void CartController::addElementToCart(const QString &name, const QString &locati
     endInsertRows();
 
 
-    qDebug() << "Added element with id:" << m_idCount;
+    //qDebug() << "Added element with id:" << m_idCount;
     setIdCount(m_idCount + 1);
 }
 

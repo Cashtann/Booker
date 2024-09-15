@@ -13,6 +13,7 @@ Rectangle {
     property int popupWidth: 300
     property int popupHeight: 500
     readonly property int shadowPlaneSize: 100
+    property int contentMargin: 25
 
     // width: popupWidth + 100
     // height: popupHeight + 100
@@ -49,7 +50,7 @@ Rectangle {
             id: container
             anchors {
                 fill: parent
-                margins: 25
+                margins: root.contentMargin
             }
 
             // ScrollPageTemplate {
@@ -76,10 +77,7 @@ Rectangle {
                         width: parent.width
                     }
                 }
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                }
+
             }
         }
     }

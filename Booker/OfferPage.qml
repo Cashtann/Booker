@@ -207,43 +207,6 @@ Page {
                     topMargin: 10
                 }
 
-                // ColoredButton {
-                //     id: buyButton
-                //     //textContent: "Book now"
-                //     property QtObject data: null
-                //     textContent: "Add to cart"
-                //     buttonCooldown: 1000
-                //     anchors {
-                //         left: parent.left
-                //         verticalCenter: parent.verticalCenter
-                //         leftMargin: buyContainer.childrenSpacing
-                //     }
-                //     Component.onCompleted: { buyButton.data = root.modelData; console.log(data) }
-                //     defaultMouseAreaEnabled: false
-
-                //     MouseArea {
-                //         id: bookBtnMouseArea
-                //         anchors.fill: parent
-                //         hoverEnabled: true
-                //         onClicked: {
-                //             console.log(data)
-                //             CartController.addElementToCart(data)
-                //             bookBtnMouseArea.enabled = false
-                //             bookBtnMouseAreaCooldownTimer.start()
-                //         }
-                //     }
-                //     Timer {
-                //         id: bookBtnMouseAreaCooldownTimer
-                //         interval: 200
-                //         running: false
-                //         repeat: false
-                //         onTriggered: {
-                //             bookBtnMouseArea.enabled = true
-                //         }
-                //     }
-                // }
-                ////////////////
-
                 Rectangle {
                     id: buyButton
                     anchors {
@@ -251,7 +214,6 @@ Page {
                         verticalCenter: parent.verticalCenter
                         leftMargin: buyContainer.childrenSpacing
                     }
-                    property QtObject mData
                     property int contentSize: styles.h8
                     width: buyButtonText.implicitWidth + buyButton.contentSize * 1.8
                     height: buyButton.contentSize * 2.5
@@ -295,7 +257,7 @@ Page {
 
                 Timer {
                     id: buyButtonCooldownTimer
-                    interval: 500
+                    interval: 200
                     running: false
                     repeat: false
                     onTriggered: {

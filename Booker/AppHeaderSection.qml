@@ -134,15 +134,44 @@ Item {
                 popupHeight: 850
                 width: hidden ? 0 : implicitWidth
                 z: 200
-                ListView {
+                Item {
+                    height: cartList.height + cartHeaderText.height
+                    width: popupCart.popupWidth - 2 * popupCart.contentMargin
+                Text {
+                    id: cartHeaderText
+                    text: cartList.count === 0 ? "Your cart is empty!" : ("Your cart consists of " + cartList.count + (cartList.count === 1 ? " item" : " items"))
+                    //clip: true
+                    font.pixelSize: styles.h6
+                    font.bold: true
+                    visible: parent.hidden ? false : true
+                    color: styles.greyDarker
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    height: font.pixelSize * 2
+                    width: popupCart.popupWidth - 2 * popupCart.contentMargin
                     anchors {
+                        top: parent.top
                         left: parent.left
                         right: parent.right
+                        leftMargin: 15
+                        rightMargin: 15
+                        //topMargin: 15
+                    }
+                }
+                ListView {
+                    id: cartList
+                    anchors {
+                        top: cartHeaderText.bottom
+                        left: parent.left
+                        right: parent.right
+                        topMargin: 15
                     }
                     height: popupCart.popupHeight
                     model: CartController
                     spacing: 25
                     boundsBehavior: Flickable.StopAtBounds
+
                     delegate: Item {
                         id: bookElement
                         required property string bookName
@@ -152,9 +181,10 @@ Item {
                         required property int bookNightsCount
                         required property int bookId
 
-                        width: popupCart.popupWidth
+                        width: popupCart.popupWidth - 2 * popupCart.contentMargin
+
                         height: 170
-                        Rectangle { anchors.fill: parent; color: styles.redDefault }
+                        //Rectangle { anchors.fill: parent; color: styles.redDefault }
 
                         Image {
                             id: bookPreviewImage
@@ -184,14 +214,7 @@ Item {
                             }
                         }
 
-                        // IconButton {
-                        //     // id: bookPreviewDeleteButton
-                        //     // required property string buttonTextContent
-                        //     // required property url imageSource
-                        //     // property int contentSize: styles.h10
-                        //     // property bool isActive: false
-                        //     // property color iconColor: styles.white
-                        // }
+                        //Rectangle { width: 100; height: 100; color: styles.greenDefault; anchors { right: parent.right} }
 
                         Column {
                             id: bookPreviewDetails
@@ -200,7 +223,7 @@ Item {
                                 //bottom: parent.bottom
                                 verticalCenter: parent.verticalCenter
                                 left: bookPreviewImage.right
-                                right: parent.right
+                                right: bookPreviewDeleteButton.left
                                 leftMargin: 15
                             }
                             Text {
@@ -250,7 +273,7 @@ Item {
                                 heightMultiplier: 1.8
                                 contentSize: styles.h11
                                 textColor: styles.black
-                                iconColor: styles.black
+                                iconColor: styles.greyDarker
                                 imageSource: "qrc:/res/assets/icons/icon_sleep.svg"
                                 textContent: bookElement.bookNightsCount.toString() + (bookElement.bookNightsCount === 1 ? " night" : " nights")
                             }
@@ -263,17 +286,34 @@ Item {
                                 heightMultiplier: 1.8
                                 contentSize: styles.h11
                                 textColor: styles.black
-                                iconColor: styles.black
+                                iconColor: styles.yellowDefault
                                 imageSource: "qrc:/res/assets/icons/icon_calc2.svg"
                                 textContent: "Your total is: $" + (bookElement.bookNightsCount * bookElement.bookPrice).toFixed(2)
                             }
-                            // Text {
-                            //     // text: bookElement.bookName
-                            //     text: bookElement.bookId
-                            //     color: styles.white
-                            // }
+                        }
+                        SquareIconButton {
+                            id: bookPreviewDeleteButton
+                            imageSource: "qrc:/res/assets/icons/icon_trash_can_full.svg"
+                            imageColorIdle: styles.redMedium
+                            imageColorHovered: styles.white
+                            imageColorPressed: styles.white
+                            buttonColorIdle: styles.redLight
+                            buttonColorHovered: styles.redMedium
+                            buttonColorPressed: styles.redDefault
+                            imgWidth: 30
+                            width: 75
+                            height: 75
+                            anchors {
+                                right: parent.right
+                                verticalCenter: parent.verticalCenter
+                                rightMargin: 25
+                            }
+                            onClicked: {
+                                CartController.removeElementFromCart(bookElement.bookId)
+                            }
                         }
                     }
+                }
                 }
             }
 
