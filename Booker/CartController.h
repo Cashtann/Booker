@@ -10,6 +10,7 @@ class CartController : public QAbstractListModel
 {
     Q_OBJECT
 
+    Q_PROPERTY(int idCount READ idCount WRITE setIdCount NOTIFY idCountChanged FINAL)
 
 public:
     enum Roles {
@@ -17,7 +18,8 @@ public:
         BookLocationRole,
         BookPriceRole,
         BookPreviewImageSourceRole,
-        BookNightsCountRole
+        BookNightsCountRole,
+        BookIdRole
     };
 
     explicit CartController(QObject *parent = nullptr);
@@ -26,20 +28,26 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
 
+    int idCount() const;
+    void setIdCount(int newIdCount);
+
 public slots:
     void addElementToCart(const QString& name,
                           const QString& location,
                           const qreal& price,
                           const QUrl& imgSource,
                           const QString& nights);
-    void addElementToCart(ElementInfo* newElement);
-    void removeElementFromCart(const ElementInfo& element);
+    void removeElementFromCart(const int& idNumber);
 
 signals:
 
+    void idCountChanged();
+
 private:
+    //int idCount = 0;
     QList<ElementInfo*> m_elementList;
 
+    int m_idCount = 0;
 };
 
 #endif // CARTCONTROLLER_H

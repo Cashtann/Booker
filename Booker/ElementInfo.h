@@ -19,6 +19,7 @@ class ElementInfo : public QObject
     Q_PROPERTY(QList<int> ratings READ ratings WRITE setRatings NOTIFY ratingsChanged FINAL)
     Q_PROPERTY(QList<QUrl> imageSources READ imageSources WRITE setImageSources NOTIFY imageSourcesChanged FINAL)
     Q_PROPERTY(int nightsCount READ nightsCount WRITE setNightsCount NOTIFY nightsCountChanged FINAL)
+    Q_PROPERTY(int id READ id WRITE setId NOTIFY idChanged FINAL)
 
 
 public:
@@ -55,6 +56,9 @@ public:
     int nightsCount() const;
     void setNightsCount(int newNightsCount);
 
+    int id() const;
+    void setId(int newId);
+
 signals:
     void nameChanged();
     void headerChanged();
@@ -75,6 +79,8 @@ signals:
 
     void nightsCountChanged();
 
+    void idChanged();
+
 private:
     QString m_name;
     QString m_header;
@@ -86,6 +92,7 @@ private:
     QUrl m_previewImageSource;
     QString m_description;
     int m_nightsCount = 0;
+    int m_id;
 };
 
 #endif // ELEMENTINFO_H

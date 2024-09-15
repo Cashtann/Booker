@@ -125,12 +125,13 @@ Item {
                 anchors {
                     top: parent.top
                     //horizontalCenter: parent.horizontalCenter
-                    left: parent.horizontalCenter
-                    topMargin: 100
+                    //left: parent.horizontalCenter
+                    right: parent.right
+                    topMargin: 60
                 }
                 //hidden: true
-                popupWidth: 600
-                popupHeight: 900
+                popupWidth: 700
+                popupHeight: 850
                 width: hidden ? 0 : implicitWidth
                 z: 200
                 ListView {
@@ -141,6 +142,7 @@ Item {
                     height: popupCart.popupHeight
                     model: CartController
                     spacing: 25
+                    boundsBehavior: Flickable.StopAtBounds
                     delegate: Item {
                         id: bookElement
                         required property string bookName
@@ -148,9 +150,10 @@ Item {
                         required property real bookPrice
                         required property url bookPreviewImageSource
                         required property int bookNightsCount
+                        required property int bookId
 
                         width: popupCart.popupWidth
-                        height: 120
+                        height: 170
                         Rectangle { anchors.fill: parent; color: styles.redDefault }
 
                         Image {
@@ -181,9 +184,94 @@ Item {
                             }
                         }
 
-                        Text {
-                            text: bookElement.bookName
-                            color: styles.white
+                        // IconButton {
+                        //     // id: bookPreviewDeleteButton
+                        //     // required property string buttonTextContent
+                        //     // required property url imageSource
+                        //     // property int contentSize: styles.h10
+                        //     // property bool isActive: false
+                        //     // property color iconColor: styles.white
+                        // }
+
+                        Column {
+                            id: bookPreviewDetails
+                            anchors {
+                                //top: parent.top
+                                //bottom: parent.bottom
+                                verticalCenter: parent.verticalCenter
+                                left: bookPreviewImage.right
+                                right: parent.right
+                                leftMargin: 15
+                            }
+                            Text {
+                                id: bookPreviewTextName
+                                text: bookElement.bookName
+                                color: styles.black
+                                font.bold: true
+                                font.pixelSize: styles.h7
+                                elide: Text.ElideRight
+                                anchors {
+                                    //top: parent.top
+                                    left: parent.left
+                                }
+                            }
+                            IconText {
+                                id: bookPreviewTextLocation
+                                anchors {
+                                    //top: bookPreviewTextName.bottom
+                                    left: parent.left
+                                }
+                                heightMultiplier: 1.8
+                                contentSize: styles.h11
+                                textColor: styles.black
+                                iconColor: styles.blueDefault
+                                imageSource: "qrc:/res/assets/icons/icon_gps.svg"
+                                textContent: "Location: " + bookElement.bookLocation
+                            }
+                            IconText {
+                                id: bookPreviewTextPrice
+                                anchors {
+                                    //top: bookPreviewTextLocation.bottom
+                                    left: parent.left
+                                }
+                                heightMultiplier: 1.8
+                                contentSize: styles.h11
+                                textColor: styles.black
+                                iconColor: styles.greenMedium
+                                imageSource: "qrc:/res/assets/icons/icon_dollar.svg"
+                                textContent: "Price/night: $" + bookElement.bookPrice.toFixed(2)
+                            }
+                            IconText {
+                                id: bookPreviewTextNightsCount
+                                anchors {
+                                    //top: bookPreviewTextPrice.bottom
+                                    left: parent.left
+                                }
+                                heightMultiplier: 1.8
+                                contentSize: styles.h11
+                                textColor: styles.black
+                                iconColor: styles.black
+                                imageSource: "qrc:/res/assets/icons/icon_sleep.svg"
+                                textContent: bookElement.bookNightsCount.toString() + (bookElement.bookNightsCount === 1 ? " night" : " nights")
+                            }
+                            IconText {
+                                id: bookPreviewTextTotal
+                                anchors {
+                                    //top: bookPreviewTextNightsCount.bottom
+                                    left: parent.left
+                                }
+                                heightMultiplier: 1.8
+                                contentSize: styles.h11
+                                textColor: styles.black
+                                iconColor: styles.black
+                                imageSource: "qrc:/res/assets/icons/icon_calc2.svg"
+                                textContent: "Your total is: $" + (bookElement.bookNightsCount * bookElement.bookPrice).toFixed(2)
+                            }
+                            // Text {
+                            //     // text: bookElement.bookName
+                            //     text: bookElement.bookId
+                            //     color: styles.white
+                            // }
                         }
                     }
                 }

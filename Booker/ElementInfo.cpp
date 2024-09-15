@@ -151,3 +151,16 @@ void ElementInfo::setNightsCount(int newNightsCount)
     m_nightsCount = newNightsCount;
     emit nightsCountChanged();
 }
+
+int ElementInfo::id() const
+{
+    return m_id;
+}
+
+void ElementInfo::setId(int newId)
+{
+    if (m_id == newId)
+        return;
+    m_id = newId;
+    emit idChanged();
+}

@@ -43,5 +43,8 @@
         <file>assets/icons/icon_contact2.svg</file>
         <file>assets/icons/icon_cart.svg</file>
         <file>assets/icons/icon_cart2.svg</file>
+        <file>assets/icons/icon_calc.svg</file>
+        <file>assets/icons/icon_sleep.svg</file>
+        <file>assets/icons/icon_calc2.svg</file>
     </qresource>
 </RCC>

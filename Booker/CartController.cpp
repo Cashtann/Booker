@@ -31,6 +31,8 @@ QVariant CartController::data(const QModelIndex &index, int role) const
             return element->previewImageSource();
         case BookNightsCountRole:
             return element->nightsCount();
+        case BookIdRole:
+            return element->id();
         default:
             return {};
         }
@@ -47,6 +49,7 @@ QHash<int, QByteArray> CartController::roleNames() const
     result[BookPriceRole] = "bookPrice";
     result[BookPreviewImageSourceRole] = "bookPreviewImageSource";
     result[BookNightsCountRole] = "bookNightsCount";
+    result[BookIdRole] = "bookId";
 
 
     return result;
@@ -63,32 +66,44 @@ void CartController::addElementToCart(const QString &name, const QString &locati
     element->setPreviewImageSource(imgSource);
     element->setPrice(price);
     element->setNightsCount(nights.toInt());
+    element->setId(m_idCount);
 
     m_elementList << element;
 
     endInsertRows();
 
-    qDebug() << "Book added!";
+
+    qDebug() << "Added element with id:" << m_idCount;
+    setIdCount(m_idCount + 1);
 }
 
-void CartController::addElementToCart(ElementInfo* newElement)
+void CartController::removeElementFromCart(const int &idNumber)
 {
-    beginInsertRows(QModelIndex(), m_elementList.length(), m_elementList.length());
+    for (int i = 0; i < m_elementList.size(); i++)
+    {
+        if (m_elementList[i]->id() == idNumber)
+        {
+            beginRemoveRows(QModelIndex(), i, i);
 
-    ElementInfo* element = new ElementInfo(this);
-    element->setName(newElement->name());
+            m_elementList[i]->deleteLater();
+            m_elementList.removeAt(i);
 
-    m_elementList << element;
-
-    qDebug() << "Book added!";
-    endInsertRows();
+            endRemoveRows();
+            return;
+        }
+    }
+    qDebug() << "Failed to delete element with id:" << idNumber;
 }
 
-
-
-
-
-void CartController::removeElementFromCart(const ElementInfo &element)
+int CartController::idCount() const
 {
+    return m_idCount;
+}
 
+void CartController::setIdCount(int newIdCount)
+{
+    if (m_idCount == newIdCount)
+        return;
+    m_idCount = newIdCount;
+    emit idCountChanged();
 }

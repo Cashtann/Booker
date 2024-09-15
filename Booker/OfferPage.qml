@@ -266,7 +266,8 @@ Page {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         font.pixelSize: buyButton.contentSize
-                        text: "Book now"
+                        // text: "Book now"
+                        text: "Add to cart"
                         color: styles.white
                         elide: Text.ElideRight
                         maximumLineCount: 1

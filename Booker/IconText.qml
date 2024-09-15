@@ -27,7 +27,7 @@ Item {
         anchors {
             left: root.left
             verticalCenter: root.verticalCenter
-            leftMargin: .5 * root.contentSize
+            //leftMargin: .5 * root.contentSize
         }
     }
 
@@ -58,7 +58,7 @@ Item {
         anchors {
             verticalCenter: root.verticalCenter
             left: img.right
-            leftMargin: root.contentSize
+            leftMargin: root.contentSize / 2
         }
     }
 
