@@ -16,7 +16,6 @@
         <file>assets/images/preview_cracow.jpg</file>
         <file>assets/images/preview_london.jpg</file>
         <file>assets/images/preview_moscow.jpg</file>
-        <file>assets/images/preview_nyc.jpg</file>
         <file>assets/images/preview_seattle.jpg</file>
         <file>assets/images/preview_shanghai.jpg</file>
         <file>assets/images/preview_thailand.jpg</file>
@@ -46,5 +45,22 @@
         <file>assets/icons/icon_calc.svg</file>
         <file>assets/icons/icon_sleep.svg</file>
         <file>assets/icons/icon_calc2.svg</file>
+        <file>assets/images/japanese_home1.jpg</file>
+        <file>assets/images/japanese_home2.jpg</file>
+        <file>assets/images/japanese_home3.jpg</file>
+        <file>assets/images/preview_las_vegas.jpg</file>
+        <file>assets/images/preview_new_york.jpg</file>
+        <file>assets/images/wooden_toilet.jpg</file>
+        <file>assets/images/preview_usa.jpg</file>
+        <file>assets/images/home1.jpg</file>
+        <file>assets/images/home2.jpg</file>
+        <file>assets/images/home3.jpg</file>
+        <file>assets/images/home4.jpg</file>
+        <file>assets/images/home5.jpg</file>
+        <file>assets/images/home6.jpg</file>
+        <file>assets/images/home7.jpg</file>
+        <file>assets/images/home8.jpg</file>
+        <file>assets/images/home9.jpg</file>
+        <file>assets/images/home10.jpg</file>
     </qresource>
 </RCC>
