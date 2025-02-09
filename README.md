@@ -4,7 +4,7 @@ Inspired by Booking.com.
 
 Made with Qt. Using QML and C++, compiles on Desktop and WebAssembly.
 
-This rental has few categories:
+This rental has tree-like structure:
 - Categories
 - Locations
 - Elements
