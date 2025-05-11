@@ -4,6 +4,11 @@ Inspired by Booking.com.
 
 Made with Qt. Using QML and C++, compiles on Desktop and WebAssembly.
 
+## Requirements
+Qt QML 6.5.3 and C++ 17
+
+
+## Info
 This rental has tree-like structure:
 - Categories
 - Locations
@@ -12,8 +17,6 @@ This rental has tree-like structure:
 There is a functional cart system, you can add multiple elements to your cart without any problems.
 
 There are multiple pages you can navigate.
-
-### *Elements are just placeholders, they do not mean anything. Titles and headers may also not fit to theirs elements, they are placeholders!*
 
 ![preview_mainpage](./preview_mainpage.png)
 ![preview_elementlist](./preview_elementlist.png)
